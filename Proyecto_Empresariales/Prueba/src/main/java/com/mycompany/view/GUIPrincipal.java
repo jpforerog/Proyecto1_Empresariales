@@ -5,9 +5,11 @@
 package com.mycompany.view;
 
 import com.mycompany.arma.Proyectil;
+import com.mycompany.servicio.ServicioArma;
 import com.mycompany.servicio.ServicioProyectiles;
 import java.util.ArrayList;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -20,16 +22,15 @@ public class GUIPrincipal extends javax.swing.JFrame {
      * Creates new form GUIPrincipal
      */
     private ServicioProyectiles servicioProyectiles = new ServicioProyectiles();
+    private ServicioArma servicioArma = new ServicioArma();
+
     public GUIPrincipal() {
-                 // Eliminar bordes y barra de título
-       
-        
+        // Eliminar bordes y barra de título
+
         // Maximizar la ventana
-        
         initComponents();
-        
-       
-        
+        setLocationRelativeTo(this);
+
     }
 
     /**
@@ -51,8 +52,11 @@ public class GUIPrincipal extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         JMenuItemCProyectiles = new javax.swing.JMenuItem();
         jMenuItemListarProyectiles = new javax.swing.JMenuItem();
+        jmArma = new javax.swing.JMenu();
+        miCrearArma = new javax.swing.JMenuItem();
+        miListarArma = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        miAcerca = new javax.swing.JMenuItem();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -96,10 +100,35 @@ public class GUIPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu2);
 
+        jmArma.setText("Armas");
+
+        miCrearArma.setText("Crear");
+        miCrearArma.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miCrearArmaActionPerformed(evt);
+            }
+        });
+        jmArma.add(miCrearArma);
+
+        miListarArma.setText("Listar");
+        miListarArma.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miListarArmaActionPerformed(evt);
+            }
+        });
+        jmArma.add(miListarArma);
+
+        jMenuBar1.add(jmArma);
+
         jMenu5.setText("Ayuda");
 
-        jMenuItem2.setText("Acerca de");
-        jMenu5.add(jMenuItem2);
+        miAcerca.setText("Acerca de");
+        miAcerca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miAcercaActionPerformed(evt);
+            }
+        });
+        jMenu5.add(miAcerca);
 
         jMenuBar1.add(jMenu5);
 
@@ -113,14 +142,14 @@ public class GUIPrincipal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 277, Short.MAX_VALUE)
+            .addGap(0, 278, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void JMenuSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMenuSalirActionPerformed
-        // TODO add your handling code here:
+        System.exit(0);
     }//GEN-LAST:event_JMenuSalirActionPerformed
 
     private void JMenuItemCProyectilesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMenuItemCProyectilesActionPerformed
@@ -133,6 +162,20 @@ public class GUIPrincipal extends javax.swing.JFrame {
         GUIListarProyectiles gui = new GUIListarProyectiles(servicioProyectiles);
         gui.setVisible(true);
     }//GEN-LAST:event_jMenuItemListarProyectilesActionPerformed
+
+    private void miAcercaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miAcercaActionPerformed
+        JOptionPane.showMessageDialog(this, "Autores: Juan Alvarez, Sebastian, Juan Forero", "Acerca de nosotros", JOptionPane.QUESTION_MESSAGE);
+    }//GEN-LAST:event_miAcercaActionPerformed
+
+    private void miCrearArmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miCrearArmaActionPerformed
+        GUICrearArma gui = new GUICrearArma(servicioArma);
+        gui.setVisible(true);
+    }//GEN-LAST:event_miCrearArmaActionPerformed
+
+    private void miListarArmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miListarArmaActionPerformed
+        GUIListarArmas gui = new GUIListarArmas(servicioArma);
+        gui.setVisible(true);
+    }//GEN-LAST:event_miListarArmaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -180,7 +223,10 @@ public class GUIPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItemListarProyectiles;
+    private javax.swing.JMenu jmArma;
+    private javax.swing.JMenuItem miAcerca;
+    private javax.swing.JMenuItem miCrearArma;
+    private javax.swing.JMenuItem miListarArma;
     // End of variables declaration//GEN-END:variables
 }

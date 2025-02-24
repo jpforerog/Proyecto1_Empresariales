@@ -9,5 +9,5 @@ package com.mycompany.arma;
  * @author Unibague
  */
 public interface IRifle {
-    public void engatillado();
+    public boolean engatillado();
 }

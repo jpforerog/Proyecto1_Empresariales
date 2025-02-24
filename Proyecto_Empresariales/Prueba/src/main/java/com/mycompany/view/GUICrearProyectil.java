@@ -20,6 +20,7 @@ public class GUICrearProyectil extends javax.swing.JFrame {
     public GUICrearProyectil(ServicioProyectiles servicioProyectiles) {
         this.servicioProyectiles = servicioProyectiles;
         initComponents();
+        setLocationRelativeTo(this);
     }
 
     /**

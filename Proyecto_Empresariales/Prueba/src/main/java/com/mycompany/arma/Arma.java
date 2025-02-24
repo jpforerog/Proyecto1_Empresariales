@@ -5,6 +5,8 @@
 package com.mycompany.arma;
 
 import java.time.LocalDate;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -15,16 +17,28 @@ public class Arma {
     private int municion;
     private String nombre;
     private LocalDate fechaCreacion;
+    
+    //Nuevos atributos
+    private int capMunicion;   
+    private int vida;
 
-    public Arma(int daño, int municion, String nombre, LocalDate fechaCreacion) {
+    public Arma(int daño, int municion, String nombre, LocalDate fechaCreacion, int vida) {
         this.daño = daño;
         this.municion = municion;
+        this.capMunicion = municion;
         this.nombre = nombre;
-        this.fechaCreacion = fechaCreacion;
+        this.fechaCreacion = LocalDate.now();
+        this.vida = vida;
+    }
+
+    public int getVida() {
+        return vida;
+    }
+
+    public void setVida(int vida) {
+        this.vida = vida;
     }
     
-    
-
     public int getDaño() {
         return daño;
     }
@@ -56,12 +70,38 @@ public class Arma {
     public void setFechaCreacion(LocalDate fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
     }
-    
-    public void disparar(){
-        
+
+    public int getCapMunicion() {
+        return capMunicion;
     }
-    public void recargar(){
-        
+
+    public void setCapMunicion(int capMunicion) {
+        this.capMunicion = capMunicion;
+    }
+    
+    public synchronized void disparar(int gatillo, boolean objetivoConVida) {
+        while (objetivoConVida) { // Mientras el objetivo tenga vida
+            if (municion >= gatillo) {
+                municion -= gatillo;
+                System.out.println("Disparando. Munición restante: " + municion);
+            } else {
+                System.out.println("Sin munición. Recargando...");
+                recargar(); 
+            }
+        }
+        System.out.println("El objetivo ya no tiene vida. Dejando de disparar.");
+    }
+
+    public synchronized void recargar() {
+        int tiempoRecarga = (int) (Math.round(daño * 0.2) * 100); //El tiempo de recarga depende del daño, puesto que asi se penaliza las armas con demasiado daño
+        try {
+            Thread.sleep(tiempoRecarga);
+        } catch (InterruptedException ex) {
+            ex.printStackTrace();
+            System.out.println("Fue interrumpida la recarga.");
+        }
+        municion = capMunicion;
+        System.out.println("Recarga completada. Munición: " + municion);
     }
     
 }

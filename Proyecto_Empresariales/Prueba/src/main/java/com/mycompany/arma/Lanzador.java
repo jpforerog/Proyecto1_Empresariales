@@ -13,8 +13,8 @@ import java.time.LocalDate;
 public class Lanzador extends Arma{
     private float tiempoRecarga;
     private Proyectil proyectil;
-    public Lanzador(int daño, int municion, String nombre, LocalDate fechaCreacion,float tiempoRecarga,Proyectil proyectil) {
-        super(daño, municion, nombre, fechaCreacion);
+    public Lanzador(int daño, int municion, String nombre, LocalDate fechaCreacion,float tiempoRecarga, int vida, Proyectil proyectil) {
+        super(daño, municion, nombre, fechaCreacion, vida);
         this.tiempoRecarga = tiempoRecarga;
         this.proyectil = proyectil;
     }

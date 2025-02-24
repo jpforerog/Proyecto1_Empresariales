@@ -10,14 +10,16 @@ import java.time.LocalDate;
  *
  * @author Unibague
  */
-public class Rifle extends Arma implements IRifle{
+public class Rifle extends Arma implements IRifle {
+
     private int cadenciaDisparo;
     private float velocidad;
-    public Rifle(int daño, int municion, String nombre, LocalDate fechaCreacion,int cadenciaDisparo,float velocidad) {
-        super(daño, municion, nombre, fechaCreacion);
+
+    public Rifle(int daño, int municion, String nombre, LocalDate fechaCreacion, int vida, int cadenciaDisparo, float velocidad) {
+        super(daño, municion, nombre, fechaCreacion, vida);
         this.cadenciaDisparo = cadenciaDisparo;
-        this.velocidad = cadenciaDisparo;
-        
+        this.velocidad = velocidad;
+
     }
 
     public int getCadenciaDisparo() {
@@ -37,8 +39,33 @@ public class Rifle extends Arma implements IRifle{
     }
 
     @Override
-    public void engatillado() {
-        
+    public boolean engatillado() {
+        double probEngatillado = cadenciaDisparo > 500 ? .4 : .2; 
+        double random = Math.random(); // Número aleatorio entre 0 y 1
+
+        // Si el número aleatorio es menor que la probabilidad, ocurre un engatillado
+        return random < probEngatillado;
     }
-    
+
+    @Override
+    public synchronized void recargar() {
+        int tiempoRecarga = (int) (Math.round(getDaño() * 0.2) * 100); //El tiempo de recarga depende del daño, puesto que asi se penaliza las armas con demasiado daño
+
+        // Verificar si ocurre un engatillado
+        if (engatillado()) {
+            System.out.println("¡El arma se ha engatillado! El tiempo de recarga aumentará.");
+            tiempoRecarga *= 2; // Duplicar el tiempo de recarga (puedes ajustar este factor)
+        }
+
+        try {
+            Thread.sleep(tiempoRecarga);
+        } catch (InterruptedException ex) {
+            ex.printStackTrace();
+            System.out.println("Fue interrumpida la recarga.");
+        }
+        setMunicion(getCapMunicion());
+        System.out.println("Recarga completada. Munición: " + getMunicion());
+        System.out.println("_______________________");
+    }
+
 }

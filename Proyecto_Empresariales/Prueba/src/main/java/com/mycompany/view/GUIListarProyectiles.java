@@ -20,6 +20,7 @@ public class GUIListarProyectiles extends javax.swing.JFrame {
     public GUIListarProyectiles(ServicioProyectiles servicioProyectiles) {
         this.servicioProyectiles = servicioProyectiles;
         initComponents();
+        setLocationRelativeTo(this);
     }
 
     /**
