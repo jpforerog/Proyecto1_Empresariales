@@ -168,7 +168,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_miAcercaActionPerformed
 
     private void miCrearArmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miCrearArmaActionPerformed
-        GUICrearArma gui = new GUICrearArma(servicioArma);
+        GUICrearArma gui = new GUICrearArma(servicioArma, servicioProyectiles);
         gui.setVisible(true);
     }//GEN-LAST:event_miCrearArmaActionPerformed
 

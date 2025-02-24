@@ -8,23 +8,22 @@ package com.mycompany.arma;
  * @author Unibague
  */
 public class Proyectil {
-    private String nombre;
+    private String tipo;
     private float velocidad;
     private float radoExplosion;
 
     public Proyectil(String tipo, float velocidad, float radoExplosion) {
-        this.nombre = tipo;
+        this.tipo = tipo;
         this.velocidad = velocidad;
         this.radoExplosion = radoExplosion;
     }
     
-
     public String getTipo() {
-        return nombre;
+        return tipo;
     }
 
     public void setTipo(String tipo) {
-        this.nombre = tipo;
+        this.tipo = tipo;
     }
 
     public float getVelocidad() {
@@ -45,7 +44,7 @@ public class Proyectil {
 
     @Override
     public String toString() {
-        return "Tipo: "+this.nombre+" Velocidad: "+this.velocidad+" Radio de explosion: "+this.radoExplosion; // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+        return "Tipo: "+this.tipo+" Velocidad: "+this.velocidad+" Radio de explosion: "+this.radoExplosion; // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
     }
     
   

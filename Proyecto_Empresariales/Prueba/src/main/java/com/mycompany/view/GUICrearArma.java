@@ -5,6 +5,7 @@
 package com.mycompany.view;
 
 import com.mycompany.servicio.ServicioArma;
+import com.mycompany.servicio.ServicioProyectiles;
 
 /**
  *
@@ -13,13 +14,15 @@ import com.mycompany.servicio.ServicioArma;
 public class GUICrearArma extends javax.swing.JFrame {
 
     private ServicioArma servicioArma;
+    private ServicioProyectiles servicioProyectiles;
     /**
      * Creates new form GUICrearArma
      */
-    public GUICrearArma(ServicioArma servicioArma) {
+    public GUICrearArma(ServicioArma servicioArma, ServicioProyectiles servicioProyectiles) {
         initComponents();
         setLocationRelativeTo(this);
         this.servicioArma = servicioArma;
+        this.servicioProyectiles = servicioProyectiles;
     }
     
     
@@ -92,7 +95,7 @@ public class GUICrearArma extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCrearLanzadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearLanzadorActionPerformed
-        GUICrearLanzador gui = new GUICrearLanzador(servicioArma);
+        GUICrearLanzador gui = new GUICrearLanzador(servicioArma, servicioProyectiles);
         gui.setVisible(true);
     }//GEN-LAST:event_btnCrearLanzadorActionPerformed
 

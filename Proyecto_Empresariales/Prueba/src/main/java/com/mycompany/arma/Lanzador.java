@@ -11,10 +11,10 @@ import java.time.LocalDate;
  * @author Unibague
  */
 public class Lanzador extends Arma{
-    private float tiempoRecarga;
+    private int tiempoRecarga; // el tiempo de recarga es obsoleto
     private Proyectil proyectil;
-    public Lanzador(int daño, int municion, String nombre, LocalDate fechaCreacion,float tiempoRecarga, int vida, Proyectil proyectil) {
-        super(daño, municion, nombre, fechaCreacion, vida);
+    public Lanzador(int daño, int municion, String nombre, int tiempoRecarga, int vida, Proyectil proyectil) {
+        super(daño, municion, nombre, vida);
         this.tiempoRecarga = tiempoRecarga;
         this.proyectil = proyectil;
     }
@@ -23,7 +23,7 @@ public class Lanzador extends Arma{
         return tiempoRecarga;
     }
 
-    public void setTiempoRecarga(float tiempoRecarga) {
+    public void setTiempoRecarga(int tiempoRecarga) {
         this.tiempoRecarga = tiempoRecarga;
     }
 
@@ -33,6 +33,14 @@ public class Lanzador extends Arma{
 
     public void setProyectil(Proyectil proyectil) {
         this.proyectil = proyectil;
+    }
+    
+    @Override
+    public String toString() {
+        return "Lanzador{" + "da\u00f1o=" + getDaño() + ", municion=" + getMunicion() + ", nombre=" 
+                + getNombre() + ", fechaCreacion=" + getFechaCreacion() + ", capMunicion=" 
+                + getMunicion() + ", vida=" + getVida() + ", tiempo de recarga = " + tiempoRecarga 
+                + "-----" +proyectil.toString() + '}';
     }
     
     

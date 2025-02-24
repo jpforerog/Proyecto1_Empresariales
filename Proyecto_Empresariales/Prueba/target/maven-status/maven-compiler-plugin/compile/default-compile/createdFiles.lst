@@ -8,6 +8,7 @@ com\mycompany\arma\IRifle.class
 com\mycompany\view\GUIPrincipal$1.class
 com\mycompany\arma\Arma.class
 com\mycompany\view\GUIPrincipal$4.class
+com\mycompany\view\GUICrearLanzador$2.class
 com\mycompany\view\GUIListarProyectiles$1.class
 com\mycompany\view\GUICrearProyectil$1.class
 com\mycompany\view\GUIPrincipal$7.class
@@ -20,9 +21,11 @@ com\mycompany\view\GUIListarArmas.class
 com\mycompany\arma\Rifle.class
 com\mycompany\view\GUIPrincipal$5.class
 com\mycompany\view\GUIPrincipal.class
+com\mycompany\view\GUICrearRifle$2.class
 com\mycompany\view\GUIPrincipal$6.class
 com\mycompany\main\main.class
 com\mycompany\view\GUICrearProyectil.class
 com\mycompany\view\GUICrearArma$2.class
+com\mycompany\view\GUICrearLanzador$1.class
 com\mycompany\view\GUIPrincipal$3.class
 com\mycompany\servicio\ServicioArma.class

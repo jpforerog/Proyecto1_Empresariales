@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <NonVisualComponents>
     <Component class="javax.swing.JPasswordField" name="jPasswordField1">
       <Properties>
@@ -69,7 +69,7 @@
                       <Component id="tfNombre" min="-2" pref="513" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="30" max="32767" attributes="0"/>
+              <EmptySpace pref="32" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -126,6 +126,11 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JSpinner" name="spDa&#xf1;o">
+      <Properties>
+        <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+          <SpinnerModel initial="0" minimum="0" numberType="java.lang.Integer" stepSize="5" type="number"/>
+        </Property>
+      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lbMunicion">
       <Properties>
@@ -133,6 +138,11 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JSpinner" name="spMunicion">
+      <Properties>
+        <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+          <SpinnerModel initial="0" minimum="0" numberType="java.lang.Integer" stepSize="5" type="number"/>
+        </Property>
+      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lbNombre">
       <Properties>
@@ -150,6 +160,11 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JSpinner" name="spVida">
+      <Properties>
+        <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+          <SpinnerModel initial="0" minimum="0" numberType="java.lang.Integer" stepSize="5" type="number"/>
+        </Property>
+      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lbCadencia">
       <Properties>
@@ -157,6 +172,11 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JSpinner" name="spCadencia">
+      <Properties>
+        <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+          <SpinnerModel initial="0" minimum="0" numberType="java.lang.Integer" stepSize="5" type="number"/>
+        </Property>
+      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lbVelocidad">
       <Properties>
@@ -164,11 +184,19 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JSpinner" name="spVelocidad">
+      <Properties>
+        <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+          <SpinnerModel initial="0" minimum="0" numberType="java.lang.Integer" stepSize="5" type="number"/>
+        </Property>
+      </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="btCrearRifle">
       <Properties>
         <Property name="text" type="java.lang.String" value="&#xfe3b;&#x253b;&#x2533;&#x2550;&#x2550;&#x2501;&#x4e00;     Crear     &#x257e;&#x2501;&#x2564;&#x30c7;&#x2566;&#xfe3b;"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btCrearRifleActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

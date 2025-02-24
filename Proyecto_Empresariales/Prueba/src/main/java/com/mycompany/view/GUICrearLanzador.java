@@ -4,22 +4,64 @@
  */
 package com.mycompany.view;
 
+import com.mycompany.arma.Arma;
+import com.mycompany.arma.Lanzador;
+import com.mycompany.arma.Proyectil;
 import com.mycompany.servicio.ServicioArma;
+import com.mycompany.servicio.ServicioProyectiles;
+import java.util.List;
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
+import javax.swing.ListModel;
 
 /**
  *
  * @author Juan David
  */
 public class GUICrearLanzador extends javax.swing.JFrame {
-    
+
     ServicioArma servicioArma;
+    ServicioProyectiles servicioProyectiles;
+
     /**
      * Creates new form GUICrearLanzador
      */
-    public GUICrearLanzador(ServicioArma servicioArma) {
+    public GUICrearLanzador(ServicioArma servicioArma, ServicioProyectiles servicioProyectiles) {
+        this.servicioArma = servicioArma;
+        this.servicioProyectiles = servicioProyectiles;
         initComponents();
         setLocationRelativeTo(this);
-        this.servicioArma = servicioArma;
+    }
+
+    public ListModel<String> modeloProyectiles() {
+        DefaultListModel<String> modelo = new DefaultListModel<>();
+
+        try {
+            List<Proyectil> proyectiles = servicioProyectiles.getProyectiles();
+            System.out.println("Proyecs" + proyectiles);
+
+            for (Proyectil p : proyectiles) {
+                modelo.addElement(p.getTipo()); 
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("No existen proyectiles que mostrar.");
+            JOptionPane.showMessageDialog(this, "(No existen proyectiles) Por favor crea al menos un proyectil para continuar"
+                    , "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+        return modelo;
+    }
+
+    public Proyectil obtenerProyectilDeLista(String nombre) {
+        List<Proyectil> proyectiles = servicioProyectiles.getProyectiles();
+
+        for (Proyectil p : proyectiles) {
+            if (p.getTipo().equals(nombre)) {
+                return p;
+            }
+        }
+        return null;
     }
 
     /**
@@ -31,24 +73,183 @@ public class GUICrearLanzador extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        spTiempo = new javax.swing.JSpinner();
+        lbProyectil = new javax.swing.JLabel();
+        btCrearLanzador = new javax.swing.JButton();
+        lbDaño = new javax.swing.JLabel();
+        spDaño = new javax.swing.JSpinner();
+        lbMunicion = new javax.swing.JLabel();
+        spMunicion = new javax.swing.JSpinner();
+        lbNombre = new javax.swing.JLabel();
+        tfNombre = new javax.swing.JTextField();
+        lbVida = new javax.swing.JLabel();
+        spVida = new javax.swing.JSpinner();
+        lbTiempo = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        ltProyectiles = new javax.swing.JList<>();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Crear Lanzador");
+
+        spTiempo.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 5));
+
+        lbProyectil.setText("Proyectil");
+
+        btCrearLanzador.setText("▄︻═╦══*     Crear    *══╦═︻▄");
+        btCrearLanzador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btCrearLanzadorActionPerformed(evt);
+            }
+        });
+
+        lbDaño.setText("Daño");
+
+        spDaño.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 5));
+
+        lbMunicion.setText("Municion");
+
+        spMunicion.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 5));
+
+        lbNombre.setText("Nombre");
+
+        tfNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfNombreActionPerformed(evt);
+            }
+        });
+
+        lbVida.setText("Vida");
+
+        spVida.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 5));
+
+        lbTiempo.setText("Tiempo de recarga");
+
+        ltProyectiles.setModel(modeloProyectiles());
+        ltProyectiles.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane1.setViewportView(ltProyectiles);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbNombre)
+                    .addComponent(lbProyectil)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(lbDaño)
+                                .addComponent(spDaño, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(lbMunicion)
+                                .addComponent(spMunicion, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(59, 59, 59)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(lbVida)
+                                .addComponent(spVida, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(70, 70, 70)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(lbTiempo)
+                                .addComponent(spTiempo, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btCrearLanzador, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(tfNombre, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 577, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addComponent(lbNombre)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(lbDaño)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(spDaño, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(lbTiempo)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(spTiempo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lbVida)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(spVida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lbMunicion)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(spMunicion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addComponent(lbProyectil)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(51, 51, 51))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btCrearLanzador, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(85, 85, 85))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btCrearLanzadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCrearLanzadorActionPerformed
+        if (ltProyectiles == null) {
+            
+        }
+        
+        if (tfNombre.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Debe darle un nombre al arma", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        String nombre = tfNombre.getText().trim();
+        int daño = (int) spDaño.getValue();
+        int municion = (int) spDaño.getValue();
+        int vida = (int) spDaño.getValue();
+        int tiempoRecarga = (int) spTiempo.getValue();
+        
+        String nombreProyectil = ltProyectiles.getSelectedValue();
+        Proyectil proyectil = obtenerProyectilDeLista(nombreProyectil);
+        if (proyectil == null) {
+            JOptionPane.showMessageDialog(this, "Proyectil no seleccionado", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        Arma lanzador = new Lanzador(daño, municion, nombre, tiempoRecarga, vida, proyectil);
+        System.out.println(lanzador.toString());
+        servicioProyectiles.añadirProyectil(proyectil);
+        JOptionPane.showMessageDialog(this, "Exito al crear el lanzador", "Exito", JOptionPane.INFORMATION_MESSAGE);
+
+
+    }//GEN-LAST:event_btCrearLanzadorActionPerformed
+
+    private void tfNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfNombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfNombreActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btCrearLanzador;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lbDaño;
+    private javax.swing.JLabel lbMunicion;
+    private javax.swing.JLabel lbNombre;
+    private javax.swing.JLabel lbProyectil;
+    private javax.swing.JLabel lbTiempo;
+    private javax.swing.JLabel lbVida;
+    private javax.swing.JList<String> ltProyectiles;
+    private javax.swing.JSpinner spDaño;
+    private javax.swing.JSpinner spMunicion;
+    private javax.swing.JSpinner spTiempo;
+    private javax.swing.JSpinner spVida;
+    private javax.swing.JTextField tfNombre;
     // End of variables declaration//GEN-END:variables
 }

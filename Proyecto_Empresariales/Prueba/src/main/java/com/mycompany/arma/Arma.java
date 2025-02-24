@@ -5,8 +5,6 @@
 package com.mycompany.arma;
 
 import java.time.LocalDate;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -22,7 +20,7 @@ public class Arma {
     private int capMunicion;   
     private int vida;
 
-    public Arma(int daño, int municion, String nombre, LocalDate fechaCreacion, int vida) {
+    public Arma(int daño, int municion, String nombre, int vida) {
         this.daño = daño;
         this.municion = municion;
         this.capMunicion = municion;

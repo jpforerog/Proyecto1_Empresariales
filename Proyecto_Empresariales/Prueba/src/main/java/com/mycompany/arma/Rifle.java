@@ -15,8 +15,8 @@ public class Rifle extends Arma implements IRifle {
     private int cadenciaDisparo;
     private float velocidad;
 
-    public Rifle(int daño, int municion, String nombre, LocalDate fechaCreacion, int vida, int cadenciaDisparo, float velocidad) {
-        super(daño, municion, nombre, fechaCreacion, vida);
+    public Rifle(int daño, int municion, String nombre, int vida, int cadenciaDisparo, float velocidad) {
+        super(daño, municion, nombre, vida);
         this.cadenciaDisparo = cadenciaDisparo;
         this.velocidad = velocidad;
 
@@ -38,6 +38,13 @@ public class Rifle extends Arma implements IRifle {
         this.velocidad = velocidad;
     }
 
+   @Override
+    public String toString() {
+        return "Rifle{" + "da\u00f1o=" + getDaño() + ", municion=" + getMunicion() + ", nombre=" + getNombre() 
+                + ", fechaCreacion=" + getFechaCreacion() + ", capMunicion=" + getMunicion() 
+                + ", vida=" + getVida() + ", velocidad = " + velocidad + ", cadencia de disparo= " + cadenciaDisparo + '}';
+    }
+    
     @Override
     public boolean engatillado() {
         double probEngatillado = cadenciaDisparo > 500 ? .4 : .2; 

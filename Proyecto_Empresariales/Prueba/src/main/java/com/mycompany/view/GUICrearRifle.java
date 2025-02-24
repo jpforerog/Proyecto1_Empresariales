@@ -4,14 +4,19 @@
  */
 package com.mycompany.view;
 
+import com.mycompany.arma.Arma;
+import com.mycompany.arma.Rifle;
 import com.mycompany.servicio.ServicioArma;
+import java.time.LocalDate;
+import javax.swing.JOptionPane;
+import javax.swing.JSpinner;
 
 /**
  *
  * @author Juan David
  */
 public class GUICrearRifle extends javax.swing.JFrame {
-    
+
     ServicioArma servicioArma;
 
     /**
@@ -21,6 +26,11 @@ public class GUICrearRifle extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(this);
         this.servicioArma = servicioArma;
+        ((JSpinner.DefaultEditor) spDaño.getEditor()).getTextField().setEditable(false);
+        ((JSpinner.DefaultEditor) spMunicion.getEditor()).getTextField().setEditable(false);
+        ((JSpinner.DefaultEditor) spVida.getEditor()).getTextField().setEditable(false);
+        ((JSpinner.DefaultEditor) spCadencia.getEditor()).getTextField().setEditable(false);
+        ((JSpinner.DefaultEditor) spVelocidad.getEditor()).getTextField().setEditable(false);
     }
 
     /**
@@ -54,7 +64,11 @@ public class GUICrearRifle extends javax.swing.JFrame {
 
         lbDaño.setText("Daño");
 
+        spDaño.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 5));
+
         lbMunicion.setText("Municion");
+
+        spMunicion.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 5));
 
         lbNombre.setText("Nombre");
 
@@ -66,11 +80,22 @@ public class GUICrearRifle extends javax.swing.JFrame {
 
         lbVida.setText("Vida");
 
+        spVida.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 5));
+
         lbCadencia.setText("Cadencia de disparo");
+
+        spCadencia.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 5));
 
         lbVelocidad.setText("Velocidad");
 
+        spVelocidad.setModel(new javax.swing.SpinnerNumberModel(0, 0, null, 5));
+
         btCrearRifle.setText("︻┻┳══━一     Crear     ╾━╤デ╦︻");
+        btCrearRifle.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btCrearRifleActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -105,7 +130,7 @@ public class GUICrearRifle extends javax.swing.JFrame {
                                 .addComponent(spCadencia, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addComponent(lbNombre)
                         .addComponent(tfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 513, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -150,6 +175,24 @@ public class GUICrearRifle extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tfNombreActionPerformed
 
+    private void btCrearRifleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCrearRifleActionPerformed
+        if (tfNombre.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Debe darle un nombre al arma", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        String nombre = tfNombre.getText().trim();
+        int daño = (int) spDaño.getValue();
+        int municion = (int) spDaño.getValue();
+        int vida = (int) spDaño.getValue();
+        int cadencia = (int) spDaño.getValue();
+        int velocidad = (int) spDaño.getValue();
+        
+        Arma rifle = new Rifle(daño, municion, nombre, vida, cadencia, velocidad);
+        System.out.println(rifle.toString());
+        
+        servicioArma.añadirArma(rifle);
+        JOptionPane.showMessageDialog(this, "Exito al crear el rifle", "Exito", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_btCrearRifleActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
