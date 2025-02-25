@@ -15,10 +15,12 @@ public class Arma {
     private int municion;
     private String nombre;
     private LocalDate fechaCreacion;
+
     
     //Nuevos atributos
     private int capMunicion;   
-    private int vida;
+    private int vida=100;
+    private final int distancia = 100;
 
     public Arma(int daño, int municion, String nombre, int vida) {
         this.daño = daño;
@@ -76,11 +78,18 @@ public class Arma {
     public void setCapMunicion(int capMunicion) {
         this.capMunicion = capMunicion;
     }
-    
-    public synchronized void disparar(int gatillo, boolean objetivoConVida) {
-        while (objetivoConVida) { // Mientras el objetivo tenga vida
+    public boolean enemigoVivo(Arma enemigo){
+        if(enemigo.getVida()<=0){
+            return false;
+        }
+        return true;
+    }
+    /*
+    public void disparar(int gatillo, Arma objetivoConVida) {
+        if (enemigoVivo(objetivoConVida)) { // Mientras el objetivo tenga vida
             if (municion >= gatillo) {
                 municion -= gatillo;
+                
                 System.out.println("Disparando. Munición restante: " + municion);
             } else {
                 System.out.println("Sin munición. Recargando...");
@@ -88,9 +97,16 @@ public class Arma {
             }
         }
         System.out.println("El objetivo ya no tiene vida. Dejando de disparar.");
+    }*/
+    public Arma disparar(Arma objetivoConVida){
+        if(enemigoVivo(objetivoConVida)){
+            municion -= 1;
+            objetivoConVida.setVida(objetivoConVida.getVida() - this.getDaño());
+        }
+        return objetivoConVida;
     }
 
-    public synchronized void recargar() {
+    public void recargar() {
         int tiempoRecarga = (int) (Math.round(daño * 0.2) * 100); //El tiempo de recarga depende del daño, puesto que asi se penaliza las armas con demasiado daño
         try {
             Thread.sleep(tiempoRecarga);
