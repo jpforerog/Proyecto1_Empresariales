@@ -23,9 +23,9 @@ public class GUICrearRifle extends javax.swing.JFrame {
      * Creates new form GUICrearRifle
      */
     public GUICrearRifle(ServicioArma servicioArma) {
+        this.servicioArma = servicioArma;
         initComponents();
         setLocationRelativeTo(this);
-        this.servicioArma = servicioArma;
         ((JSpinner.DefaultEditor) spDaño.getEditor()).getTextField().setEditable(false);
         ((JSpinner.DefaultEditor) spMunicion.getEditor()).getTextField().setEditable(false);
         ((JSpinner.DefaultEditor) spVida.getEditor()).getTextField().setEditable(false);

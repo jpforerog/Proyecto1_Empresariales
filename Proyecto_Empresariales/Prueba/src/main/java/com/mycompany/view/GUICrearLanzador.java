@@ -12,6 +12,7 @@ import com.mycompany.servicio.ServicioProyectiles;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import javax.swing.JSpinner;
 import javax.swing.ListModel;
 
 /**
@@ -31,6 +32,10 @@ public class GUICrearLanzador extends javax.swing.JFrame {
         this.servicioProyectiles = servicioProyectiles;
         initComponents();
         setLocationRelativeTo(this);
+        ((JSpinner.DefaultEditor) spDaño.getEditor()).getTextField().setEditable(false);
+        ((JSpinner.DefaultEditor) spMunicion.getEditor()).getTextField().setEditable(false);
+        ((JSpinner.DefaultEditor) spVida.getEditor()).getTextField().setEditable(false);
+        ((JSpinner.DefaultEditor) spTiempo.getEditor()).getTextField().setEditable(false);
     }
 
     public ListModel<String> modeloProyectiles() {
@@ -43,11 +48,15 @@ public class GUICrearLanzador extends javax.swing.JFrame {
             for (Proyectil p : proyectiles) {
                 modelo.addElement(p.getTipo()); 
             }
+            if (proyectiles.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "(No existen proyectiles) Por favor crea al menos un proyectil para continuar"
+                    , "Error", JOptionPane.INFORMATION_MESSAGE);
+                GUICrearProyectil gui = new GUICrearProyectil(servicioProyectiles);
+                gui.setVisible(true);
+            }
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("No existen proyectiles que mostrar.");
-            JOptionPane.showMessageDialog(this, "(No existen proyectiles) Por favor crea al menos un proyectil para continuar"
-                    , "Error", JOptionPane.ERROR_MESSAGE);
         }
 
         return modelo;
@@ -87,6 +96,7 @@ public class GUICrearLanzador extends javax.swing.JFrame {
         lbTiempo = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         ltProyectiles = new javax.swing.JList<>();
+        btnRefresLista = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Crear Lanzador");
@@ -128,6 +138,13 @@ public class GUICrearLanzador extends javax.swing.JFrame {
         ltProyectiles.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(ltProyectiles);
 
+        btnRefresLista.setText("Refrescar lista");
+        btnRefresLista.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRefresListaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -136,7 +153,6 @@ public class GUICrearLanzador extends javax.swing.JFrame {
                 .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lbNombre)
-                    .addComponent(lbProyectil)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -154,8 +170,11 @@ public class GUICrearLanzador extends javax.swing.JFrame {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(lbTiempo)
                                 .addComponent(spTiempo, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(btnRefresLista)
+                                .addComponent(lbProyectil)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btCrearLanzador, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addComponent(tfNombre, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 577, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -187,26 +206,25 @@ public class GUICrearLanzador extends javax.swing.JFrame {
                         .addComponent(lbMunicion)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(spMunicion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
-                .addComponent(lbProyectil)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(51, 51, 51))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btCrearLanzador, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(85, 85, 85))))
+                        .addGap(85, 85, 85))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(lbProyectil)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnRefresLista)
+                        .addContainerGap(34, Short.MAX_VALUE))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btCrearLanzadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCrearLanzadorActionPerformed
-        if (ltProyectiles == null) {
-            
-        }
-        
         if (tfNombre.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Debe darle un nombre al arma", "Error", JOptionPane.ERROR_MESSAGE);
             return;
@@ -235,9 +253,14 @@ public class GUICrearLanzador extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tfNombreActionPerformed
 
+    private void btnRefresListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefresListaActionPerformed
+        ltProyectiles.setModel(modeloProyectiles());
+    }//GEN-LAST:event_btnRefresListaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btCrearLanzador;
+    private javax.swing.JButton btnRefresLista;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbDaño;
     private javax.swing.JLabel lbMunicion;

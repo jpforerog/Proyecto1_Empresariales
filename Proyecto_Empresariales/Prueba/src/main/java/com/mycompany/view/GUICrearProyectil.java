@@ -6,6 +6,7 @@ package com.mycompany.view;
 
 import com.mycompany.arma.Proyectil;
 import com.mycompany.servicio.ServicioProyectiles;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -50,19 +51,21 @@ public class GUICrearProyectil extends javax.swing.JFrame {
 
         jLabel3.setText("Radio de explosion ");
 
-        TFTipo.setForeground(new java.awt.Color(204, 204, 204));
+        TFTipo.setForeground(new java.awt.Color(0, 0, 0));
         TFTipo.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        TFTipo.setText("Granada");
         TFTipo.setToolTipText("");
+        TFTipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TFTipoActionPerformed(evt);
+            }
+        });
 
-        TFVelocidad.setForeground(new java.awt.Color(204, 204, 204));
+        TFVelocidad.setForeground(new java.awt.Color(0, 0, 0));
         TFVelocidad.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        TFVelocidad.setText("20");
         TFVelocidad.setToolTipText("");
 
-        TFRadio.setForeground(new java.awt.Color(204, 204, 204));
+        TFRadio.setForeground(new java.awt.Color(0, 0, 0));
         TFRadio.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        TFRadio.setText("20");
         TFRadio.setToolTipText("");
         TFRadio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -97,7 +100,7 @@ public class GUICrearProyectil extends javax.swing.JFrame {
                     .addGroup(jLayeredPane1Layout.createSequentialGroup()
                         .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE))
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE))
                         .addGap(166, 166, 166))
                     .addComponent(TFRadio)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -123,20 +126,23 @@ public class GUICrearProyectil extends javax.swing.JFrame {
                 .addComponent(TFRadio)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnCrearProyectil, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(64, 64, 64))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLayeredPane1)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLayeredPane1)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jLayeredPane1)
-                .addGap(61, 61, 61))
+                .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 9, Short.MAX_VALUE))
         );
 
         pack();
@@ -147,12 +153,18 @@ public class GUICrearProyectil extends javax.swing.JFrame {
     }//GEN-LAST:event_TFRadioActionPerformed
 
     private void btnCrearProyectilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearProyectilActionPerformed
-        // TODO add your handling code here:
-      
+        if (TFTipo.getText().trim().isEmpty() || TFVelocidad.getText().trim().isEmpty() || TFRadio.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Debe llenar todos los campos.", "Información", JOptionPane.HEIGHT);
+            return;
+        }
         Proyectil pro = new Proyectil((String)TFTipo.getText().trim(),Float.parseFloat(TFVelocidad.getText().trim()),Float.parseFloat(TFRadio.getText().trim()));
-        
         servicioProyectiles.añadirProyectil(pro);
+        JOptionPane.showMessageDialog(this, "Exito al crear el proyectil", "Información", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_btnCrearProyectilActionPerformed
+
+    private void TFTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TFTipoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TFTipoActionPerformed
 
     /**
      * @param args the command line arguments
