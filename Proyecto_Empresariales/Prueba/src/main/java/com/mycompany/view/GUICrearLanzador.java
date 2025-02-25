@@ -213,8 +213,8 @@ public class GUICrearLanzador extends javax.swing.JFrame {
         }
         String nombre = tfNombre.getText().trim();
         int daño = (int) spDaño.getValue();
-        int municion = (int) spDaño.getValue();
-        int vida = (int) spDaño.getValue();
+        int municion = (int) spMunicion.getValue();
+        int vida = (int) spVida.getValue();
         int tiempoRecarga = (int) spTiempo.getValue();
         
         String nombreProyectil = ltProyectiles.getSelectedValue();
@@ -224,8 +224,8 @@ public class GUICrearLanzador extends javax.swing.JFrame {
             return;
         }
         Arma lanzador = new Lanzador(daño, municion, nombre, tiempoRecarga, vida, proyectil);
+        servicioArma.añadirArma(lanzador);
         System.out.println(lanzador.toString());
-        servicioProyectiles.añadirProyectil(proyectil);
         JOptionPane.showMessageDialog(this, "Exito al crear el lanzador", "Exito", JOptionPane.INFORMATION_MESSAGE);
 
 

@@ -182,10 +182,10 @@ public class GUICrearRifle extends javax.swing.JFrame {
         }
         String nombre = tfNombre.getText().trim();
         int daño = (int) spDaño.getValue();
-        int municion = (int) spDaño.getValue();
-        int vida = (int) spDaño.getValue();
-        int cadencia = (int) spDaño.getValue();
-        int velocidad = (int) spDaño.getValue();
+        int municion = (int) spMunicion.getValue();
+        int vida = (int) spVida.getValue();
+        int cadencia = (int) spCadencia.getValue();
+        int velocidad = (int) spVelocidad.getValue();
         
         Arma rifle = new Rifle(daño, municion, nombre, vida, cadencia, velocidad);
         System.out.println(rifle.toString());

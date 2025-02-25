@@ -4,13 +4,17 @@
  */
 package com.mycompany.view;
 
+import com.mycompany.arma.Arma;
 import com.mycompany.arma.Proyectil;
 import com.mycompany.servicio.ServicioArma;
 import com.mycompany.servicio.ServicioProyectiles;
 import java.util.ArrayList;
+import java.util.List;
+import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.ListModel;
 
 /**
  *
@@ -32,6 +36,25 @@ public class GUIPrincipal extends javax.swing.JFrame {
         setLocationRelativeTo(this);
 
     }
+        private ListModel<Arma> modeloLanzadores() {
+        DefaultListModel<Arma> modelo = new DefaultListModel<>();
+
+        try {
+            List<Arma> armas = servicioArma.getArmas();
+            System.out.println("Armas" + armas);
+
+            for (Arma p : armas) {
+                modelo.addElement(p);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("No existen proyectiles que mostrar.");
+            JOptionPane.showMessageDialog(this, "(No existen proyectiles) Por favor crea al menos un proyectil para continuar",
+                     "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+        return modelo;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -46,6 +69,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
+        btnIniciar = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         JMenuSalir = new javax.swing.JMenuItem();
@@ -67,6 +91,14 @@ public class GUIPrincipal extends javax.swing.JFrame {
         jMenuBar2.add(jMenu4);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        btnIniciar.setText("Iniciar juego");
+        btnIniciar.setToolTipText("");
+        btnIniciar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIniciarActionPerformed(evt);
+            }
+        });
 
         jMenu1.setText("File");
 
@@ -138,11 +170,17 @@ public class GUIPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(147, Short.MAX_VALUE)
+                .addComponent(btnIniciar)
+                .addContainerGap(157, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 278, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(105, Short.MAX_VALUE)
+                .addComponent(btnIniciar)
+                .addContainerGap(150, Short.MAX_VALUE))
         );
 
         pack();
@@ -164,7 +202,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItemListarProyectilesActionPerformed
 
     private void miAcercaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miAcercaActionPerformed
-        JOptionPane.showMessageDialog(this, "Autores: Juan Alvarez, Sebastian, Juan Forero", "Acerca de nosotros", JOptionPane.QUESTION_MESSAGE);
+        JOptionPane.showMessageDialog(this, "Autores: Juan Alvarez, Sebastian Acosta, Juan Forero", "Acerca de nosotros", JOptionPane.QUESTION_MESSAGE);
     }//GEN-LAST:event_miAcercaActionPerformed
 
     private void miCrearArmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miCrearArmaActionPerformed
@@ -176,6 +214,23 @@ public class GUIPrincipal extends javax.swing.JFrame {
         GUIListarArmas gui = new GUIListarArmas(servicioArma);
         gui.setVisible(true);
     }//GEN-LAST:event_miListarArmaActionPerformed
+
+    private void btnIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarActionPerformed
+        if (modeloLanzadores().getSize() == 0) {
+            JOptionPane.showMessageDialog(
+                    this,
+                    "No hay armas creadas, redireccionando a creacion de armas",
+                    "Error",
+                    JOptionPane.INFORMATION_MESSAGE
+            );
+
+            GUICrearArma gui = new GUICrearArma(servicioArma, servicioProyectiles);
+            gui.setVisible(true);
+        }else{
+        GUIElegirArma gui = new GUIElegirArma(servicioArma,servicioProyectiles);
+        gui.setVisible(true);
+        }
+    }//GEN-LAST:event_btnIniciarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -215,6 +270,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem JMenuItemCProyectiles;
     private javax.swing.JMenuItem JMenuSalir;
+    private javax.swing.JButton btnIniciar;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
