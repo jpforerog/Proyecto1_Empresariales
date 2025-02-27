@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 C:\Users\Juan David\OneDrive\Escritorio\Universidad\Semestres\(7) Septimo semestre\Empresariales\PVideojuego\Proyecto1_Empresariales\Proyecto_Empresariales\Prueba\src\main\java\com\mycompany\view\GUIElegirArma.java
 C:\Users\Juan David\OneDrive\Escritorio\Universidad\Semestres\(7) Septimo semestre\Empresariales\PVideojuego\Proyecto1_Empresariales\Proyecto_Empresariales\Prueba\src\main\java\com\mycompany\view\GUIListarArmas.java
 C:\Users\Juan David\OneDrive\Escritorio\Universidad\Semestres\(7) Septimo semestre\Empresariales\PVideojuego\Proyecto1_Empresariales\Proyecto_Empresariales\Prueba\src\main\java\com\mycompany\main\main.java
@@ -17,3 +18,23 @@ C:\Users\Juan David\OneDrive\Escritorio\Universidad\Semestres\(7) Septimo semest
 C:\Users\Juan David\OneDrive\Escritorio\Universidad\Semestres\(7) Septimo semestre\Empresariales\PVideojuego\Proyecto1_Empresariales\Proyecto_Empresariales\Prueba\src\main\java\com\mycompany\arma\IRifle.java
 C:\Users\Juan David\OneDrive\Escritorio\Universidad\Semestres\(7) Septimo semestre\Empresariales\PVideojuego\Proyecto1_Empresariales\Proyecto_Empresariales\Prueba\src\main\java\com\mycompany\servicio\ServicioProyectiles.java
 C:\Users\Juan David\OneDrive\Escritorio\Universidad\Semestres\(7) Septimo semestre\Empresariales\PVideojuego\Proyecto1_Empresariales\Proyecto_Empresariales\Prueba\src\main\java\com\mycompany\view\GUIPrincipal.java
+=======
+C:\Users\PC GAMER RYZEN 5\Desktop\ProyectoEmpresariales\Proyecto1_Empresariales\Proyecto_Empresariales\Prueba\src\main\java\com\mycompany\arma\Arma.java
+C:\Users\PC GAMER RYZEN 5\Desktop\ProyectoEmpresariales\Proyecto1_Empresariales\Proyecto_Empresariales\Prueba\src\main\java\com\mycompany\arma\IRifle.java
+C:\Users\PC GAMER RYZEN 5\Desktop\ProyectoEmpresariales\Proyecto1_Empresariales\Proyecto_Empresariales\Prueba\src\main\java\com\mycompany\arma\Lanzador.java
+C:\Users\PC GAMER RYZEN 5\Desktop\ProyectoEmpresariales\Proyecto1_Empresariales\Proyecto_Empresariales\Prueba\src\main\java\com\mycompany\arma\Proyectil.java
+C:\Users\PC GAMER RYZEN 5\Desktop\ProyectoEmpresariales\Proyecto1_Empresariales\Proyecto_Empresariales\Prueba\src\main\java\com\mycompany\arma\Rifle.java
+C:\Users\PC GAMER RYZEN 5\Desktop\ProyectoEmpresariales\Proyecto1_Empresariales\Proyecto_Empresariales\Prueba\src\main\java\com\mycompany\main\main.java
+C:\Users\PC GAMER RYZEN 5\Desktop\ProyectoEmpresariales\Proyecto1_Empresariales\Proyecto_Empresariales\Prueba\src\main\java\com\mycompany\servicio\ServicioArma.java
+C:\Users\PC GAMER RYZEN 5\Desktop\ProyectoEmpresariales\Proyecto1_Empresariales\Proyecto_Empresariales\Prueba\src\main\java\com\mycompany\servicio\ServicioProyectiles.java
+C:\Users\PC GAMER RYZEN 5\Desktop\ProyectoEmpresariales\Proyecto1_Empresariales\Proyecto_Empresariales\Prueba\src\main\java\com\mycompany\view\GUICrearArma.java
+C:\Users\PC GAMER RYZEN 5\Desktop\ProyectoEmpresariales\Proyecto1_Empresariales\Proyecto_Empresariales\Prueba\src\main\java\com\mycompany\view\GUICrearLanzador.java
+C:\Users\PC GAMER RYZEN 5\Desktop\ProyectoEmpresariales\Proyecto1_Empresariales\Proyecto_Empresariales\Prueba\src\main\java\com\mycompany\view\GUICrearProyectil.java
+C:\Users\PC GAMER RYZEN 5\Desktop\ProyectoEmpresariales\Proyecto1_Empresariales\Proyecto_Empresariales\Prueba\src\main\java\com\mycompany\view\GUICrearRifle.java
+C:\Users\PC GAMER RYZEN 5\Desktop\ProyectoEmpresariales\Proyecto1_Empresariales\Proyecto_Empresariales\Prueba\src\main\java\com\mycompany\view\GUIElegirArma.java
+C:\Users\PC GAMER RYZEN 5\Desktop\ProyectoEmpresariales\Proyecto1_Empresariales\Proyecto_Empresariales\Prueba\src\main\java\com\mycompany\view\GUIElegirArmaJugador2.java
+C:\Users\PC GAMER RYZEN 5\Desktop\ProyectoEmpresariales\Proyecto1_Empresariales\Proyecto_Empresariales\Prueba\src\main\java\com\mycompany\view\GUIJuego.java
+C:\Users\PC GAMER RYZEN 5\Desktop\ProyectoEmpresariales\Proyecto1_Empresariales\Proyecto_Empresariales\Prueba\src\main\java\com\mycompany\view\GUIListarArmas.java
+C:\Users\PC GAMER RYZEN 5\Desktop\ProyectoEmpresariales\Proyecto1_Empresariales\Proyecto_Empresariales\Prueba\src\main\java\com\mycompany\view\GUIListarProyectiles.java
+C:\Users\PC GAMER RYZEN 5\Desktop\ProyectoEmpresariales\Proyecto1_Empresariales\Proyecto_Empresariales\Prueba\src\main\java\com\mycompany\view\GUIPrincipal.java
+>>>>>>> b09ca25af205979ef18dc0dfb2fd95e084071a9c
