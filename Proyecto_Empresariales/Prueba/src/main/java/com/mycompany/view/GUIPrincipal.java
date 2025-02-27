@@ -8,12 +8,9 @@ import com.mycompany.arma.Arma;
 import com.mycompany.arma.Proyectil;
 import com.mycompany.servicio.ServicioArma;
 import com.mycompany.servicio.ServicioProyectiles;
-import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultListModel;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.ListModel;
 
 /**
@@ -34,9 +31,10 @@ public class GUIPrincipal extends javax.swing.JFrame {
         // Maximizar la ventana
         initComponents();
         setLocationRelativeTo(this);
-
+        
     }
-        private ListModel<Arma> modeloLanzadores() {
+
+    private ListModel<Arma> modeloLanzadores() {
         DefaultListModel<Arma> modelo = new DefaultListModel<>();
 
         try {
@@ -50,7 +48,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
             e.printStackTrace();
             System.out.println("No existen proyectiles que mostrar.");
             JOptionPane.showMessageDialog(this, "(No existen proyectiles) Por favor crea al menos un proyectil para continuar",
-                     "Error", JOptionPane.ERROR_MESSAGE);
+                    "Error", JOptionPane.ERROR_MESSAGE);
         }
 
         return modelo;
@@ -79,6 +77,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
         jmArma = new javax.swing.JMenu();
         miCrearArma = new javax.swing.JMenuItem();
         miListarArma = new javax.swing.JMenuItem();
+        miEliminar = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         miAcerca = new javax.swing.JMenuItem();
 
@@ -91,14 +90,19 @@ public class GUIPrincipal extends javax.swing.JFrame {
         jMenuBar2.add(jMenu4);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Video Juego");
 
+        btnIniciar.setFont(new java.awt.Font("Consolas", 0, 12)); // NOI18N
         btnIniciar.setText("Iniciar juego");
         btnIniciar.setToolTipText("");
+        btnIniciar.setBorder(javax.swing.BorderFactory.createCompoundBorder());
         btnIniciar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnIniciarActionPerformed(evt);
             }
         });
+
+        jMenuBar1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jMenu1.setText("File");
 
@@ -150,6 +154,14 @@ public class GUIPrincipal extends javax.swing.JFrame {
         });
         jmArma.add(miListarArma);
 
+        miEliminar.setText("Eliminar");
+        miEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miEliminarActionPerformed(evt);
+            }
+        });
+        jmArma.add(miEliminar);
+
         jMenuBar1.add(jmArma);
 
         jMenu5.setText("Ayuda");
@@ -171,16 +183,16 @@ public class GUIPrincipal extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(147, Short.MAX_VALUE)
-                .addComponent(btnIniciar)
-                .addContainerGap(157, Short.MAX_VALUE))
+                .addGap(217, 217, 217)
+                .addComponent(btnIniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(225, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(105, Short.MAX_VALUE)
-                .addComponent(btnIniciar)
-                .addContainerGap(150, Short.MAX_VALUE))
+                .addContainerGap(138, Short.MAX_VALUE)
+                .addComponent(btnIniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(155, 155, 155))
         );
 
         pack();
@@ -226,11 +238,16 @@ public class GUIPrincipal extends javax.swing.JFrame {
 
             GUICrearArma gui = new GUICrearArma(servicioArma, servicioProyectiles);
             gui.setVisible(true);
-        }else{
-        GUIElegirArma gui = new GUIElegirArma(servicioArma,servicioProyectiles);
-        gui.setVisible(true);
+        } else {
+            GUIElegirArma gui = new GUIElegirArma(servicioArma, servicioProyectiles);
+            gui.setVisible(true);
         }
     }//GEN-LAST:event_btnIniciarActionPerformed
+
+    private void miEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miEliminarActionPerformed
+        GUIEliminarArma gui = new GUIEliminarArma(servicioArma);
+        gui.setVisible(true);
+    }//GEN-LAST:event_miEliminarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -283,6 +300,8 @@ public class GUIPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jmArma;
     private javax.swing.JMenuItem miAcerca;
     private javax.swing.JMenuItem miCrearArma;
+    private javax.swing.JMenuItem miEliminar;
     private javax.swing.JMenuItem miListarArma;
     // End of variables declaration//GEN-END:variables
+
 }

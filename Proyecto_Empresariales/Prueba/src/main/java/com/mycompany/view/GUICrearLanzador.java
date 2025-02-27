@@ -38,21 +38,25 @@ public class GUICrearLanzador extends javax.swing.JFrame {
         ((JSpinner.DefaultEditor) spTiempo.getEditor()).getTextField().setEditable(false);
     }
 
-    public ListModel<String> modeloProyectiles() {
-        DefaultListModel<String> modelo = new DefaultListModel<>();
+    public ListModel<Proyectil> modeloProyectiles() {
+        DefaultListModel<Proyectil> modelo = new DefaultListModel<>();
 
         try {
             List<Proyectil> proyectiles = servicioProyectiles.getProyectiles();
-            System.out.println("Proyecs" + proyectiles);
+            System.out.println("Proyectiles" + proyectiles);
 
             for (Proyectil p : proyectiles) {
-                modelo.addElement(p.getTipo()); 
+                modelo.addElement(p);
             }
             if (proyectiles.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "(No existen proyectiles) Por favor crea al menos un proyectil para continuar"
-                    , "Error", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, "(No existen proyectiles) Por favor crea al menos un proyectil para continuar",
+                         "Error", JOptionPane.INFORMATION_MESSAGE);
                 GUICrearProyectil gui = new GUICrearProyectil(servicioProyectiles);
                 gui.setVisible(true);
+                gui.setAlwaysOnTop(true); // Asegura que la ventana se muestre en primer plano
+                gui.toFront(); // Lleva la ventana al frente
+                gui.requestFocus(); // Asegura que la ventana reciba el foco
+
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -60,17 +64,6 @@ public class GUICrearLanzador extends javax.swing.JFrame {
         }
 
         return modelo;
-    }
-
-    public Proyectil obtenerProyectilDeLista(String nombre) {
-        List<Proyectil> proyectiles = servicioProyectiles.getProyectiles();
-
-        for (Proyectil p : proyectiles) {
-            if (p.getTipo().equals(nombre)) {
-                return p;
-            }
-        }
-        return null;
     }
 
     /**
@@ -234,13 +227,13 @@ public class GUICrearLanzador extends javax.swing.JFrame {
         int municion = (int) spMunicion.getValue();
         int vida = (int) spVida.getValue();
         int tiempoRecarga = (int) spTiempo.getValue();
-        
-        String nombreProyectil = ltProyectiles.getSelectedValue();
-        Proyectil proyectil = obtenerProyectilDeLista(nombreProyectil);
+
+        Proyectil proyectil = ltProyectiles.getSelectedValue();
         if (proyectil == null) {
             JOptionPane.showMessageDialog(this, "Proyectil no seleccionado", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
+
         Arma lanzador = new Lanzador(daño, municion, nombre, tiempoRecarga, vida, proyectil);
         servicioArma.añadirArma(lanzador);
         System.out.println(lanzador.toString());
@@ -268,7 +261,7 @@ public class GUICrearLanzador extends javax.swing.JFrame {
     private javax.swing.JLabel lbProyectil;
     private javax.swing.JLabel lbTiempo;
     private javax.swing.JLabel lbVida;
-    private javax.swing.JList<String> ltProyectiles;
+    private javax.swing.JList<Proyectil> ltProyectiles;
     private javax.swing.JSpinner spDaño;
     private javax.swing.JSpinner spMunicion;
     private javax.swing.JSpinner spTiempo;

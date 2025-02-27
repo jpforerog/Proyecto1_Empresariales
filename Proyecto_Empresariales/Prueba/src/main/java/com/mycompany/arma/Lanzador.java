@@ -35,12 +35,17 @@ public class Lanzador extends Arma{
         this.proyectil = proyectil;
     }
     
-    @Override
+    /*@Override
     public String toString() {
         return "Lanzador{" + "da\u00f1o=" + getDaño() + ", municion=" + getMunicion() + ", nombre=" 
                 + getNombre() + ", fechaCreacion=" + getFechaCreacion() + ", capMunicion=" 
                 + getMunicion() + ", vida=" + getVida() + ", tiempo de recarga = " + tiempoRecarga 
                 + "-----" +proyectil.toString() + '}';
+    }*/
+    
+    @Override
+    public String toString() {
+        return "Lanzador -> " + getNombre() + " con daño de " + getDaño();
     }
     
     

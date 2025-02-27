@@ -22,6 +22,7 @@ public class GUIJuego extends javax.swing.JFrame {
         this.jugador1 = new Arma(jugador1.getDaño(), jugador1.getMunicion(), jugador1.getNombre(), jugador1.getVida());
         this.jugador2 = new Arma(jugador2.getDaño(), jugador2.getMunicion(), jugador2.getNombre(), jugador2.getVida());
         initComponents();
+        setLocationRelativeTo(this);
     }
 
     /**

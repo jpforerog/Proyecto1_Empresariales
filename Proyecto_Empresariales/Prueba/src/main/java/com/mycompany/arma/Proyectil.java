@@ -42,9 +42,15 @@ public class Proyectil {
         this.radoExplosion = radoExplosion;
     }
 
+    /*@Override
+    public String toString() {
+        return "Tipo: "+this.tipo+" Velocidad: "+this.velocidad+" Radio de explosion: "
+                +this.radoExplosion; 
+    }*/
+    
     @Override
     public String toString() {
-        return "Tipo: "+this.tipo+" Velocidad: "+this.velocidad+" Radio de explosion: "+this.radoExplosion; // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+        return "Proyectil -> " + tipo + " con radio de explosión de " + radoExplosion; 
     }
     
   

@@ -38,11 +38,16 @@ public class Rifle extends Arma implements IRifle {
         this.velocidad = velocidad;
     }
 
-   @Override
+   /*@Override
     public String toString() {
         return "Rifle{" + "da\u00f1o=" + getDaño() + ", municion=" + getMunicion() + ", nombre=" + getNombre() 
                 + ", fechaCreacion=" + getFechaCreacion() + ", capMunicion=" + getMunicion() 
                 + ", vida=" + getVida() + ", velocidad = " + velocidad + ", cadencia de disparo= " + cadenciaDisparo + '}';
+    }*/
+    
+    @Override
+    public String toString() {
+        return "Rifle -> " + getNombre() + " con daño de " + getDaño();
     }
     
     @Override

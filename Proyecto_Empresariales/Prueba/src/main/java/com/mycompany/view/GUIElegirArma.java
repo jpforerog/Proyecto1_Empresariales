@@ -26,16 +26,11 @@ public class GUIElegirArma extends javax.swing.JFrame {
      * Creates new form GUIElegirArma
      */
     public GUIElegirArma(ServicioArma servicioArma, ServicioProyectiles servicioProyectiles) {
-
         this.servicioArma = servicioArma;
+        this.servicioProyectiles = servicioProyectiles;
         initComponents();
-        ltLanzadores = new JList<>();
-        ltLanzadores.setModel(modeloLanzadores());
-        ltLanzadores.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jScrollPane1.setViewportView(ltLanzadores);
-
+        setLocationRelativeTo(this);
     }
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -47,19 +42,12 @@ public class GUIElegirArma extends javax.swing.JFrame {
     private void initComponents() {
 
         jLayeredPane1 = new javax.swing.JLayeredPane();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        try {
-            ltLanzadores =(javax.swing.JList)java.beans.Beans.instantiate(getClass().getClassLoader(), "com/mycompany/view.GUIElegirArma_ltLanzadores");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (java.io.IOException e) {
-            e.printStackTrace();
-        }
         jButton1 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        ltElegirArma = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-
-        jScrollPane1.setViewportView(ltLanzadores);
+        setTitle("Arma Jugador 1");
 
         jButton1.setText("Preparado");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -68,27 +56,35 @@ public class GUIElegirArma extends javax.swing.JFrame {
             }
         });
 
-        jLayeredPane1.setLayer(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        ltElegirArma.setModel(modeloLanzadores());
+        ltElegirArma.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane2.setViewportView(ltElegirArma);
+
         jLayeredPane1.setLayer(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(jScrollPane2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
         jLayeredPane1.setLayout(jLayeredPane1Layout);
         jLayeredPane1Layout.setHorizontalGroup(
             jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 522, Short.MAX_VALUE)
             .addGroup(jLayeredPane1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                        .addGap(0, 211, Short.MAX_VALUE)
+                        .addComponent(jButton1)
+                        .addGap(0, 211, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2))
+                .addContainerGap())
         );
         jLayeredPane1Layout.setVerticalGroup(
             jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jLayeredPane1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jButton1)
-                .addContainerGap(91, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -99,30 +95,28 @@ public class GUIElegirArma extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-            // TODO add your handling code here:
-            Arma jugador1 = ltLanzadores.getSelectedValue();
-            this.dispose();
-            GUIElegirArmaJugador2 gui = new GUIElegirArmaJugador2(servicioArma, servicioProyectiles,jugador1);
-            gui.setVisible(true);
-            setLocationRelativeTo(this);
-            
+        // TODO add your handling code here:
+        Arma jugador1 = ltElegirArma.getSelectedValue();
+        this.dispose();
+        GUIElegirArmaJugador2 gui = new GUIElegirArmaJugador2(servicioArma, servicioProyectiles, jugador1);
+        gui.setVisible(true);
+        setLocationRelativeTo(this);
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JLayeredPane jLayeredPane1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JList<Arma> ltLanzadores;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JList<Arma> ltElegirArma;
     // End of variables declaration//GEN-END:variables
 
     private ListModel<Arma> modeloLanzadores() {

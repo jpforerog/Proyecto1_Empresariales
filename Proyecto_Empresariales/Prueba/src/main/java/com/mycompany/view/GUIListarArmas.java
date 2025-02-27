@@ -4,7 +4,11 @@
  */
 package com.mycompany.view;
 
+import com.mycompany.arma.Arma;
+import com.mycompany.arma.Rifle;
 import com.mycompany.servicio.ServicioArma;
+import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -13,6 +17,7 @@ import com.mycompany.servicio.ServicioArma;
 public class GUIListarArmas extends javax.swing.JFrame {
 
     private ServicioArma servicioArma;
+
     /**
      * Creates new form GUIListarArmas
      */
@@ -31,24 +36,97 @@ public class GUIListarArmas extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tbArmas = new javax.swing.JTable();
+        btnListar = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Listar armas");
+
+        tbArmas.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "Rifles", "Lanzadores"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tbArmas);
+
+        btnListar.setText("Listar");
+        btnListar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnListarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 499, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(209, 209, 209)
+                .addComponent(btnListar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnListar)
+                .addGap(0, 16, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarActionPerformed
+        List<Arma> listaArmas = servicioArma.getArmas();
+        
+
+        // Validar si la lista es nula o vacía
+        if (listaArmas == null || listaArmas.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "No hay armas para listar.", "Información", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        
+        int numRifles = 0;
+        int numLanzadores = 0;
+        
+        //Agregar a la tabla dependiendo del tipo de arma
+        for (Arma arm : listaArmas) {
+            if (arm instanceof Rifle) {
+                tbArmas.setValueAt(arm.getNombre() + " (Daño: " + arm.getDaño() + ")", numRifles, 0);
+                numRifles++;
+            } else {
+                tbArmas.setValueAt(arm.getNombre() + " (Daño: " + arm.getDaño() + ")", numLanzadores, 1);
+                numLanzadores++;
+            }
+        }
+    }//GEN-LAST:event_btnListarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnListar;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tbArmas;
     // End of variables declaration//GEN-END:variables
 }

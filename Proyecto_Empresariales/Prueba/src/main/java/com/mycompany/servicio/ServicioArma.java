@@ -32,4 +32,10 @@ public class ServicioArma {
     public List<Arma> getArmas(){
         return armas;
     }
+    
+    public void eliminarArma(Arma arma) {
+        if (arma != null) {
+            armas.remove(arma);
+        }
+    }
 }
