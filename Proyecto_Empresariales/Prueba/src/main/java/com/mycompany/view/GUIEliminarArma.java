@@ -106,7 +106,7 @@ public class GUIEliminarArma extends javax.swing.JFrame {
         }
         String nombre = tfConsultar.getText().trim();
         
-        if (buscarArmas(nombre) == null) {
+        if (buscarArmas(nombre) == null || buscarArmas(nombre).getSize() == 0) {
             JOptionPane.showMessageDialog(this, "El arma no existe", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
