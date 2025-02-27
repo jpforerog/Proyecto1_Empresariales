@@ -7,6 +7,7 @@ package com.mycompany.view;
 import com.mycompany.arma.Proyectil;
 import com.mycompany.servicio.ServicioProyectiles;
 import javax.swing.JOptionPane;
+import javax.swing.JSpinner;
 
 /**
  *
@@ -22,6 +23,8 @@ public class GUICrearProyectil extends javax.swing.JFrame {
         this.servicioProyectiles = servicioProyectiles;
         initComponents();
         setLocationRelativeTo(this);
+        ((JSpinner.DefaultEditor) spVelocidad.getEditor()).getTextField().setEditable(false);
+        ((JSpinner.DefaultEditor) spRadio.getEditor()).getTextField().setEditable(false);
     }
 
     /**
@@ -38,9 +41,9 @@ public class GUICrearProyectil extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         TFTipo = new javax.swing.JTextField();
-        TFVelocidad = new javax.swing.JTextField();
-        TFRadio = new javax.swing.JTextField();
         btnCrearProyectil = new javax.swing.JButton();
+        spVelocidad = new javax.swing.JSpinner();
+        spRadio = new javax.swing.JSpinner();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("CrearProyectil");
@@ -60,19 +63,6 @@ public class GUICrearProyectil extends javax.swing.JFrame {
             }
         });
 
-        TFVelocidad.setForeground(new java.awt.Color(0, 0, 0));
-        TFVelocidad.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        TFVelocidad.setToolTipText("");
-
-        TFRadio.setForeground(new java.awt.Color(0, 0, 0));
-        TFRadio.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        TFRadio.setToolTipText("");
-        TFRadio.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TFRadioActionPerformed(evt);
-            }
-        });
-
         btnCrearProyectil.setText("Crear Proyectil");
         btnCrearProyectil.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -80,13 +70,17 @@ public class GUICrearProyectil extends javax.swing.JFrame {
             }
         });
 
+        spVelocidad.setModel(new javax.swing.SpinnerNumberModel(0.0f, 0.0f, null, 5.0f));
+
+        spRadio.setModel(new javax.swing.SpinnerNumberModel(0.0f, 0.0f, null, 5.0f));
+
         jLayeredPane1.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(TFTipo, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(TFVelocidad, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(TFRadio, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(btnCrearProyectil, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(spVelocidad, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(spRadio, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
         jLayeredPane1.setLayout(jLayeredPane1Layout);
@@ -96,14 +90,21 @@ public class GUICrearProyectil extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(TFTipo)
-                    .addComponent(TFVelocidad)
                     .addGroup(jLayeredPane1Layout.createSequentialGroup()
                         .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE))
-                        .addGap(166, 166, 166))
-                    .addComponent(TFRadio)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE)
+                            .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                                .addComponent(spVelocidad, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
+                                .addGap(16, 16, 16))
+                            .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                                .addComponent(spRadio, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(jLayeredPane1Layout.createSequentialGroup()
                         .addComponent(btnCrearProyectil)
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -117,47 +118,42 @@ public class GUICrearProyectil extends javax.swing.JFrame {
                 .addGap(1, 1, 1)
                 .addComponent(TFTipo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(TFVelocidad)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(7, 7, 7)
-                .addComponent(TFRadio)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(spVelocidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(spRadio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addComponent(btnCrearProyectil, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(30, 30, 30))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLayeredPane1)
-                .addContainerGap())
+            .addComponent(jLayeredPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 9, Short.MAX_VALUE))
+            .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void TFRadioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TFRadioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TFRadioActionPerformed
-
     private void btnCrearProyectilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearProyectilActionPerformed
-        if (TFTipo.getText().trim().isEmpty() || TFVelocidad.getText().trim().isEmpty() || TFRadio.getText().trim().isEmpty()) {
+        if (TFTipo.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Debe llenar todos los campos.", "Información", JOptionPane.HEIGHT);
             return;
         }
-        Proyectil pro = new Proyectil((String)TFTipo.getText().trim(),Float.parseFloat(TFVelocidad.getText().trim()),Float.parseFloat(TFRadio.getText().trim()));
+        String tipo = TFTipo.getText().trim();
+        float velocidad = (float) spVelocidad.getValue();
+        float radio = (float) spRadio.getValue();
+        
+        Proyectil pro = new Proyectil(tipo, velocidad, radio);
         servicioProyectiles.añadirProyectil(pro);
         JOptionPane.showMessageDialog(this, "Exito al crear el proyectil", "Información", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_btnCrearProyectilActionPerformed
@@ -172,13 +168,13 @@ public class GUICrearProyectil extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField TFRadio;
     private javax.swing.JTextField TFTipo;
-    private javax.swing.JTextField TFVelocidad;
     private javax.swing.JButton btnCrearProyectil;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLayeredPane jLayeredPane1;
+    private javax.swing.JSpinner spRadio;
+    private javax.swing.JSpinner spVelocidad;
     // End of variables declaration//GEN-END:variables
 }

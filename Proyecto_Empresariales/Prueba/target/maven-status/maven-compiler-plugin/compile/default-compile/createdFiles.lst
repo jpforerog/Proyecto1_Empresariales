@@ -29,13 +29,14 @@ com\mycompany\view\GUICrearLanzador.class
 com\mycompany\arma\Lanzador.class
 com\mycompany\view\GUIElegirArmaJugador2.class
 com\mycompany\servicio\ServicioProyectiles.class
+com\mycompany\view\FondoPanel.class
 com\mycompany\view\GUICrearProyectil$2.class
 com\mycompany\view\GUIListarArmas$2.class
 com\mycompany\arma\IRifle.class
 com\mycompany\view\GUIElegirArmaJugador2$1.class
+com\mycompany\view\GUIConsultarArma.class
 com\mycompany\view\GUIElegirArma.class
 com\mycompany\view\GUIPrincipal$7.class
-com\mycompany\view\GUICrearProyectil$3.class
 com\mycompany\view\GUICrearArma$1.class
 com\mycompany\view\GUICrearArma.class
 com\mycompany\view\GUIPrincipal$9.class
@@ -44,4 +45,6 @@ com\mycompany\view\GUIPrincipal.class
 com\mycompany\view\GUIEliminarArma$1.class
 com\mycompany\view\GUIPrincipal$6.class
 com\mycompany\view\GUICrearLanzador$1.class
+com\mycompany\view\GUIPrincipal$10.class
 com\mycompany\view\GUIPrincipal$3.class
+com\mycompany\view\GUIConsultarArma$1.class

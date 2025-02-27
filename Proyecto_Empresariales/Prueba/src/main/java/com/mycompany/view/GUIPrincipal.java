@@ -8,7 +8,6 @@ import com.mycompany.arma.Arma;
 import com.mycompany.arma.Proyectil;
 import com.mycompany.servicio.ServicioArma;
 import com.mycompany.servicio.ServicioProyectiles;
-import imagenes.FondoPanel;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
@@ -109,6 +108,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
         miCrearArma = new javax.swing.JMenuItem();
         miListarArma = new javax.swing.JMenuItem();
         miEliminar = new javax.swing.JMenuItem();
+        miConsultar = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         miAcerca = new javax.swing.JMenuItem();
 
@@ -123,6 +123,8 @@ public class GUIPrincipal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Video Juego");
 
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         btnIniciar.setFont(new java.awt.Font("Consolas", 0, 12)); // NOI18N
         btnIniciar.setText("Iniciar juego");
         btnIniciar.setToolTipText("");
@@ -132,27 +134,6 @@ public class GUIPrincipal extends javax.swing.JFrame {
                 btnIniciarActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 595, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(221, 221, 221)
-                    .addComponent(btnIniciar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addContainerGap(221, Short.MAX_VALUE)))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 234, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(98, 98, 98)
-                    .addComponent(btnIniciar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addContainerGap(99, Short.MAX_VALUE)))
-        );
 
         jMenuBar1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -214,6 +195,14 @@ public class GUIPrincipal extends javax.swing.JFrame {
         });
         jmArma.add(miEliminar);
 
+        miConsultar.setText("Consultar");
+        miConsultar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miConsultarActionPerformed(evt);
+            }
+        });
+        jmArma.add(miConsultar);
+
         jMenuBar1.add(jmArma);
 
         jMenu5.setText("Ayuda");
@@ -234,13 +223,19 @@ public class GUIPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 677, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(264, 264, 264)
+                .addComponent(btnIniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(284, 284, 284))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 303, Short.MAX_VALUE)
+                .addComponent(btnIniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26))
         );
 
         pack();
@@ -297,6 +292,11 @@ public class GUIPrincipal extends javax.swing.JFrame {
         gui.setVisible(true);
     }//GEN-LAST:event_miEliminarActionPerformed
 
+    private void miConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miConsultarActionPerformed
+        GUIConsultarArma gui = new GUIConsultarArma(servicioArma);
+        gui.setVisible(true);
+    }//GEN-LAST:event_miConsultarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -348,6 +348,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JMenu jmArma;
     private javax.swing.JMenuItem miAcerca;
+    private javax.swing.JMenuItem miConsultar;
     private javax.swing.JMenuItem miCrearArma;
     private javax.swing.JMenuItem miEliminar;
     private javax.swing.JMenuItem miListarArma;
