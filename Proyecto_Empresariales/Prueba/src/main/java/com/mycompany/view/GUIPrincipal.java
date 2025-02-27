@@ -8,9 +8,17 @@ import com.mycompany.arma.Arma;
 import com.mycompany.arma.Proyectil;
 import com.mycompany.servicio.ServicioArma;
 import com.mycompany.servicio.ServicioProyectiles;
+import imagenes.FondoPanel;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.util.List;
 import javax.swing.DefaultListModel;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.ListModel;
 
 /**
@@ -28,10 +36,32 @@ public class GUIPrincipal extends javax.swing.JFrame {
     public GUIPrincipal() {
         // Eliminar bordes y barra de título
 
-        // Maximizar la ventana
+        FondoPanel panel = new FondoPanel("C:\\Users\\jupaf\\OneDrive\\Documentos\\NetBeansProjects\\Proyecto1_Empresariales\\Proyecto1_Empresariales\\Proyecto_Empresariales\\Prueba\\src\\main\\java\\imagenes\\Fondogame.jpg");
         initComponents();
-        setLocationRelativeTo(this);
         
+        btnIniciar.setPreferredSize(new Dimension(180, 50));
+        
+        JPanel panelBoton = new JPanel(new GridBagLayout()); // Usar GridBagLayout para centrar el botón
+        panelBoton.setOpaque(false); // Hacer el panel transparente para que se vea el fondo
+
+        // Agregar el botón al panel intermedio
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.insets = new Insets(10, 10, 10, 10); // Márgenes alrededor del botón
+        panelBoton.add(btnIniciar, gbc);
+
+        // Configurar el layout del panel de fondo
+        panel.setLayout(new BorderLayout());
+
+        // Agregar el panel intermedio al panel de fondo
+        panel.add(panelBoton, BorderLayout.CENTER);
+
+        // Establecer el panel de fondo como contenido del frame
+        setContentPane(panel);
+
+        // Centrar el frame en la pantalla
+        setLocationRelativeTo(this);
     }
 
     private ListModel<Arma> modeloLanzadores() {
@@ -67,6 +97,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu3 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
+        jPanel1 = new javax.swing.JPanel();
         btnIniciar = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -101,6 +132,27 @@ public class GUIPrincipal extends javax.swing.JFrame {
                 btnIniciarActionPerformed(evt);
             }
         });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 595, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(221, 221, 221)
+                    .addComponent(btnIniciar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap(221, Short.MAX_VALUE)))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 234, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(98, 98, 98)
+                    .addComponent(btnIniciar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap(99, Short.MAX_VALUE)))
+        );
 
         jMenuBar1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -154,7 +206,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
         });
         jmArma.add(miListarArma);
 
-        miEliminar.setText("Eliminar");
+        miEliminar.setText("Buscar y eliminar");
         miEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 miEliminarActionPerformed(evt);
@@ -182,17 +234,13 @@ public class GUIPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(217, 217, 217)
-                .addComponent(btnIniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(225, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(138, Short.MAX_VALUE)
-                .addComponent(btnIniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(155, 155, 155))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(284, 284, 284))
         );
 
         pack();
@@ -214,7 +262,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItemListarProyectilesActionPerformed
 
     private void miAcercaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miAcercaActionPerformed
-        JOptionPane.showMessageDialog(this, "Autores: Juan Alvarez, Sebastian Acosta, Juan Forero", "Acerca de nosotros", JOptionPane.QUESTION_MESSAGE);
+        JOptionPane.showMessageDialog(this, "Autores: Juan Alvarez, Sebastian Acosta, Juan Forero \n version 0.0", "Acerca de nosotros", JOptionPane.QUESTION_MESSAGE);
     }//GEN-LAST:event_miAcercaActionPerformed
 
     private void miCrearArmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miCrearArmaActionPerformed
@@ -297,6 +345,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItemListarProyectiles;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JMenu jmArma;
     private javax.swing.JMenuItem miAcerca;
     private javax.swing.JMenuItem miCrearArma;
