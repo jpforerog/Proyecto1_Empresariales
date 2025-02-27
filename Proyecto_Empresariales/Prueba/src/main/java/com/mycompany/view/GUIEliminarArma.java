@@ -137,6 +137,7 @@ public class GUIEliminarArma extends javax.swing.JFrame {
         }
         return modelo;
     }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;

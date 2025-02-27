@@ -14,10 +14,14 @@ import java.time.LocalDate;
 public class main {
 
     public static void main(String[] args) {
-        /*Rifle rifle = new Rifle(100, 30, "joa", LocalDate.MIN, 30, 411, 20);
-        Arma arm2 = new Arma(20, 10, "hola", LocalDate.MIN, 40);
+        Arma rifle = new Rifle(5, 1, "joa", 100, 5, 5);
+        while(true){
+            rifle.disparar(rifle);
+        }
         
-        for (int i = 0; i < 10; i++) {
+        //Arma arm2 = new Arma(20, 10, "hola", LocalDate.MIN, 40);
+        
+        /*for (int i = 0; i < 10; i++) {
             arm2.recargar();
             System.out.println("Recarga No: " + i);
         }

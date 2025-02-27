@@ -5,6 +5,7 @@
 package com.mycompany.view;
 
 import com.mycompany.arma.Arma;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -19,8 +20,11 @@ public class GUIJuego extends javax.swing.JFrame {
      * Creates new form GUIJuego
      */
     public GUIJuego(Arma jugador1, Arma jugador2) {
-        this.jugador1 = new Arma(jugador1.getDaño(), jugador1.getMunicion(), jugador1.getNombre(), jugador1.getVida());
-        this.jugador2 = new Arma(jugador2.getDaño(), jugador2.getMunicion(), jugador2.getNombre(), jugador2.getVida());
+        
+        // Clonar los objetos para mantener su tipo original
+        this.jugador1 = jugador1.clone();
+        this.jugador2 = jugador2.clone();
+        System.out.println(jugador1.getClass()+"      "+ jugador2.getClass());
         initComponents();
         setLocationRelativeTo(this);
     }
@@ -40,6 +44,7 @@ public class GUIJuego extends javax.swing.JFrame {
         Vida2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Interfaz del juego");
 
         jButton1.setText("Disparar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -95,6 +100,11 @@ public class GUIJuego extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
         jugador2 = jugador1.disparar(jugador2);
+        if(jugador2.getVida()==0){
+            JOptionPane.showMessageDialog(this, "Ganador jugador 1",
+                    "Ganador", JOptionPane.INFORMATION_MESSAGE);
+            this.dispose();
+        }
         System.out.println("vida: " + jugador2.getVida() + "daño" + jugador1.getDaño());
 
         Vida2.setText(String.valueOf(jugador2.getVida()));
@@ -103,8 +113,13 @@ public class GUIJuego extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         jugador1 = jugador2.disparar(jugador1);
-        System.out.println("vida: " + jugador2.getVida() + "daño" + jugador1.getDaño());
-
+         if(jugador1.getVida()==0){
+            JOptionPane.showMessageDialog(this, "Ganador jugador 2",
+                    "Ganador", JOptionPane.INFORMATION_MESSAGE);
+            this.dispose();
+        }
+        System.out.println("vida: " + jugador1.getVida() + "daño" + jugador2.getDaño());
+        
         Vida1.setText(String.valueOf(jugador1.getVida()));
     }//GEN-LAST:event_jButton2ActionPerformed
 

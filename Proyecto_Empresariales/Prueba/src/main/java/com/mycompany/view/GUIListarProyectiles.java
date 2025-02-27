@@ -38,6 +38,7 @@ public class GUIListarProyectiles extends javax.swing.JFrame {
         btnListar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Tabla proyectiles");
 
         tblListarProyectiles.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -69,7 +70,7 @@ public class GUIListarProyectiles extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        btnListar.setText("jButton1");
+        btnListar.setText("Listar");
         btnListar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnListarActionPerformed(evt);
