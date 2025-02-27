@@ -127,7 +127,7 @@ public class Arma implements Cloneable {
 
     public void recargar() {
         System.out.println("recarga de arma");
-        int tiempoRecarga = (int) (Math.round(daño * 0.2) * 100); //El tiempo de recarga depende del daño, puesto que asi se penaliza las armas con demasiado daño
+        int tiempoRecarga = (int) (Math.round(daño * 0.2) * 10); //El tiempo de recarga depende del daño, puesto que asi se penaliza las armas con demasiado daño
         try {
             Thread.sleep(tiempoRecarga);
         } catch (InterruptedException ex) {
