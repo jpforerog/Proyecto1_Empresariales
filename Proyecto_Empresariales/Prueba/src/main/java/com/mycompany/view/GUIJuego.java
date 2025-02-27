@@ -100,7 +100,7 @@ public class GUIJuego extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
         jugador2 = jugador1.disparar(jugador2);
-        if(jugador2.getVida()==0){
+        if(jugador2.getVida()<=0){
             JOptionPane.showMessageDialog(this, "Ganador jugador 1",
                     "Ganador", JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
@@ -113,7 +113,7 @@ public class GUIJuego extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         jugador1 = jugador2.disparar(jugador1);
-         if(jugador1.getVida()==0){
+         if(jugador1.getVida()<=0){
             JOptionPane.showMessageDialog(this, "Ganador jugador 2",
                     "Ganador", JOptionPane.INFORMATION_MESSAGE);
             this.dispose();
