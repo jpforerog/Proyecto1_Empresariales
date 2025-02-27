@@ -36,7 +36,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
     public GUIPrincipal() {
         // Eliminar bordes y barra de título
 
-        FondoPanel panel = new FondoPanel("C:\\Users\\jupaf\\OneDrive\\Documentos\\NetBeansProjects\\Proyecto1_Empresariales\\Proyecto1_Empresariales\\Proyecto_Empresariales\\Prueba\\src\\main\\java\\imagenes\\Fondogame.jpg");
+        FondoPanel panel = new FondoPanel("src\\main\\java\\imagenes\\Fondogame.jpg");
         initComponents();
         
         btnIniciar.setPreferredSize(new Dimension(180, 50));
