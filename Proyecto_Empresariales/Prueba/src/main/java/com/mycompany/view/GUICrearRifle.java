@@ -4,10 +4,11 @@
  */
 package com.mycompany.view;
 
-import com.mycompany.arma.Arma;
-import com.mycompany.arma.Rifle;
+import com.mycompany.model.Arma;
+import com.mycompany.model.Rifle;
 import com.mycompany.servicio.ServicioArma;
 import java.time.LocalDate;
+import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
 
@@ -180,20 +181,39 @@ public class GUICrearRifle extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Debe darle un nombre al arma", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
+
+        List<Arma> listaArmas = servicioArma.getArmas();
         String nombre = tfNombre.getText().trim();
+
+        for (Arma a : listaArmas) {
+            if (a.getNombre().equals(nombre) && a.getClass().getSimpleName().equals("Rifle")) {
+                JOptionPane.showMessageDialog(this, "Ya existe un rifle con este nombre.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+        }
+
         int daño = (int) spDaño.getValue();
         int municion = (int) spMunicion.getValue();
         int vida = (int) spVida.getValue();
         int cadencia = (int) spCadencia.getValue();
         int velocidad = (int) spVelocidad.getValue();
-        
+
         Arma rifle = new Rifle(daño, municion, nombre, vida, cadencia, velocidad);
         System.out.println(rifle.toString());
-        
+
         servicioArma.añadirArma(rifle);
         JOptionPane.showMessageDialog(this, "Exito al crear el rifle", "Exito", JOptionPane.INFORMATION_MESSAGE);
+        resetearForm();
     }//GEN-LAST:event_btCrearRifleActionPerformed
 
+    public void resetearForm() {
+        tfNombre.setText(null);
+        spCadencia.setValue(0);
+        spDaño.setValue(0);
+        spMunicion.setValue(0);
+        spVelocidad.setValue(0);
+        spVida.setValue(0);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btCrearRifle;

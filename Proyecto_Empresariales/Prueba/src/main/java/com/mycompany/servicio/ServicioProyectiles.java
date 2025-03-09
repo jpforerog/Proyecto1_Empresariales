@@ -4,7 +4,8 @@
  */
 package com.mycompany.servicio;
 
-import com.mycompany.arma.Proyectil;
+
+import com.mycompany.model.Proyectil;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,6 +32,12 @@ public class ServicioProyectiles {
      */
     public List<Proyectil> getProyectiles(){
         return proyectiles;
+    }
+    
+    public void eliminarProyectil(Proyectil proyectil) {
+        if (proyectil != null) {
+            proyectiles.remove(proyectil);
+        }
     }
     
 }

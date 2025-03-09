@@ -4,7 +4,7 @@
  */
 package com.mycompany.view;
 
-import com.mycompany.arma.Arma;
+import com.mycompany.model.Arma;
 import javax.swing.JOptionPane;
 
 /**

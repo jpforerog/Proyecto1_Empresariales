@@ -4,7 +4,7 @@
  */
 package com.mycompany.view;
 
-import com.mycompany.arma.Proyectil;
+import com.mycompany.model.Proyectil;
 import com.mycompany.servicio.ServicioProyectiles;
 import java.util.List;
 

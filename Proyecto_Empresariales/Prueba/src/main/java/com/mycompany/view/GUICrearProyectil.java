@@ -4,8 +4,10 @@
  */
 package com.mycompany.view;
 
-import com.mycompany.arma.Proyectil;
+import com.mycompany.model.Arma;
+import com.mycompany.model.Proyectil;
 import com.mycompany.servicio.ServicioProyectiles;
+import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
 
@@ -40,7 +42,7 @@ public class GUICrearProyectil extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        TFTipo = new javax.swing.JTextField();
+        tfTipo = new javax.swing.JTextField();
         btnCrearProyectil = new javax.swing.JButton();
         spVelocidad = new javax.swing.JSpinner();
         spRadio = new javax.swing.JSpinner();
@@ -54,12 +56,12 @@ public class GUICrearProyectil extends javax.swing.JFrame {
 
         jLabel3.setText("Radio de explosion ");
 
-        TFTipo.setForeground(new java.awt.Color(0, 0, 0));
-        TFTipo.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        TFTipo.setToolTipText("");
-        TFTipo.addActionListener(new java.awt.event.ActionListener() {
+        tfTipo.setForeground(new java.awt.Color(0, 0, 0));
+        tfTipo.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        tfTipo.setToolTipText("");
+        tfTipo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TFTipoActionPerformed(evt);
+                tfTipoActionPerformed(evt);
             }
         });
 
@@ -77,7 +79,7 @@ public class GUICrearProyectil extends javax.swing.JFrame {
         jLayeredPane1.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLayeredPane1.setLayer(TFTipo, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(tfTipo, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(btnCrearProyectil, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(spVelocidad, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLayeredPane1.setLayer(spRadio, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -89,7 +91,7 @@ public class GUICrearProyectil extends javax.swing.JFrame {
             .addGroup(jLayeredPane1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(TFTipo)
+                    .addComponent(tfTipo)
                     .addGroup(jLayeredPane1Layout.createSequentialGroup()
                         .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -116,11 +118,11 @@ public class GUICrearProyectil extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(1, 1, 1)
-                .addComponent(TFTipo)
+                .addComponent(tfTipo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(spVelocidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -145,30 +147,42 @@ public class GUICrearProyectil extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCrearProyectilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearProyectilActionPerformed
-        if (TFTipo.getText().trim().isEmpty()) {
+        if (tfTipo.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Debe llenar todos los campos.", "Información", JOptionPane.HEIGHT);
             return;
         }
-        String tipo = TFTipo.getText().trim();
+        List<Proyectil> listaProyectils = servicioProyectiles.getProyectiles();
+        String tipo = tfTipo.getText().trim();
+        
+        for (Proyectil p : listaProyectils) {
+            if (p.getTipo().equals(tipo)) {
+                JOptionPane.showMessageDialog(this, "Ya existe un proyectil con este tipo.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+        }
+        
         float velocidad = (float) spVelocidad.getValue();
         float radio = (float) spRadio.getValue();
         
         Proyectil pro = new Proyectil(tipo, velocidad, radio);
         servicioProyectiles.añadirProyectil(pro);
         JOptionPane.showMessageDialog(this, "Exito al crear el proyectil", "Información", JOptionPane.INFORMATION_MESSAGE);
+        resetearForm();
     }//GEN-LAST:event_btnCrearProyectilActionPerformed
 
-    private void TFTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TFTipoActionPerformed
+    public void resetearForm() {
+        tfTipo.setText(null);
+        spVelocidad.setValue(0);
+        spRadio.setValue(0);
+    }
+    
+    private void tfTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfTipoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_TFTipoActionPerformed
+    }//GEN-LAST:event_tfTipoActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField TFTipo;
     private javax.swing.JButton btnCrearProyectil;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -176,5 +190,6 @@ public class GUICrearProyectil extends javax.swing.JFrame {
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JSpinner spRadio;
     private javax.swing.JSpinner spVelocidad;
+    private javax.swing.JTextField tfTipo;
     // End of variables declaration//GEN-END:variables
 }

@@ -4,7 +4,8 @@
  */
 package com.mycompany.servicio;
 
-import com.mycompany.arma.Arma;
+
+import com.mycompany.model.Arma;
 import java.util.ArrayList;
 import java.util.List;
 

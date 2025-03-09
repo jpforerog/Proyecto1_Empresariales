@@ -4,8 +4,8 @@
  */
 package com.mycompany.view;
 
-import com.mycompany.arma.Arma;
-import com.mycompany.arma.Proyectil;
+import com.mycompany.model.Arma;
+import com.mycompany.model.Proyectil;
 import com.mycompany.servicio.ServicioArma;
 import com.mycompany.servicio.ServicioProyectiles;
 import java.awt.BorderLayout;
@@ -104,11 +104,17 @@ public class GUIPrincipal extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         JMenuItemCProyectiles = new javax.swing.JMenuItem();
         jMenuItemListarProyectiles = new javax.swing.JMenuItem();
+        miEliminarProyectil = new javax.swing.JMenuItem();
         jmArma = new javax.swing.JMenu();
         miCrearArma = new javax.swing.JMenuItem();
-        miListarArma = new javax.swing.JMenuItem();
-        miEliminar = new javax.swing.JMenuItem();
-        miConsultar = new javax.swing.JMenuItem();
+        miListarRifle = new javax.swing.JMenuItem();
+        miListarLanzadores = new javax.swing.JMenuItem();
+        miEliminarRifle = new javax.swing.JMenuItem();
+        miEliminarLanzador = new javax.swing.JMenuItem();
+        miActualizarRifle = new javax.swing.JMenuItem();
+        miActualizarLanzador = new javax.swing.JMenuItem();
+        miConsultarRifle = new javax.swing.JMenuItem();
+        miConsultarLanzador = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         miAcerca = new javax.swing.JMenuItem();
 
@@ -167,6 +173,14 @@ public class GUIPrincipal extends javax.swing.JFrame {
         });
         jMenu2.add(jMenuItemListarProyectiles);
 
+        miEliminarProyectil.setText("Eliminar");
+        miEliminarProyectil.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miEliminarProyectilActionPerformed(evt);
+            }
+        });
+        jMenu2.add(miEliminarProyectil);
+
         jMenuBar1.add(jMenu2);
 
         jmArma.setText("Armas");
@@ -179,29 +193,69 @@ public class GUIPrincipal extends javax.swing.JFrame {
         });
         jmArma.add(miCrearArma);
 
-        miListarArma.setText("Listar");
-        miListarArma.addActionListener(new java.awt.event.ActionListener() {
+        miListarRifle.setText("Listar rifles");
+        miListarRifle.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                miListarArmaActionPerformed(evt);
+                miListarRifleActionPerformed(evt);
             }
         });
-        jmArma.add(miListarArma);
+        jmArma.add(miListarRifle);
 
-        miEliminar.setText("Buscar y eliminar");
-        miEliminar.addActionListener(new java.awt.event.ActionListener() {
+        miListarLanzadores.setText("Listar lanzadores");
+        miListarLanzadores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                miEliminarActionPerformed(evt);
+                miListarLanzadoresActionPerformed(evt);
             }
         });
-        jmArma.add(miEliminar);
+        jmArma.add(miListarLanzadores);
 
-        miConsultar.setText("Consultar");
-        miConsultar.addActionListener(new java.awt.event.ActionListener() {
+        miEliminarRifle.setText("Eliminar rifle");
+        miEliminarRifle.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                miConsultarActionPerformed(evt);
+                miEliminarRifleActionPerformed(evt);
             }
         });
-        jmArma.add(miConsultar);
+        jmArma.add(miEliminarRifle);
+
+        miEliminarLanzador.setText("Eliminar lanzador");
+        miEliminarLanzador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miEliminarLanzadorActionPerformed(evt);
+            }
+        });
+        jmArma.add(miEliminarLanzador);
+
+        miActualizarRifle.setText("Actualizar rifle");
+        miActualizarRifle.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miActualizarRifleActionPerformed(evt);
+            }
+        });
+        jmArma.add(miActualizarRifle);
+
+        miActualizarLanzador.setText("Actualizar lanzador");
+        miActualizarLanzador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miActualizarLanzadorActionPerformed(evt);
+            }
+        });
+        jmArma.add(miActualizarLanzador);
+
+        miConsultarRifle.setText("Consultar rifle");
+        miConsultarRifle.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miConsultarRifleActionPerformed(evt);
+            }
+        });
+        jmArma.add(miConsultarRifle);
+
+        miConsultarLanzador.setText("Consultar lanzador");
+        miConsultarLanzador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miConsultarLanzadorActionPerformed(evt);
+            }
+        });
+        jmArma.add(miConsultarLanzador);
 
         jMenuBar1.add(jmArma);
 
@@ -265,11 +319,6 @@ public class GUIPrincipal extends javax.swing.JFrame {
         gui.setVisible(true);
     }//GEN-LAST:event_miCrearArmaActionPerformed
 
-    private void miListarArmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miListarArmaActionPerformed
-        GUIListarArmas gui = new GUIListarArmas(servicioArma);
-        gui.setVisible(true);
-    }//GEN-LAST:event_miListarArmaActionPerformed
-
     private void btnIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarActionPerformed
         if (modeloLanzadores().getSize() == 0) {
             JOptionPane.showMessageDialog(
@@ -287,15 +336,51 @@ public class GUIPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnIniciarActionPerformed
 
-    private void miEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miEliminarActionPerformed
-        GUIEliminarArma gui = new GUIEliminarArma(servicioArma);
+    private void miListarRifleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miListarRifleActionPerformed
+        GUIListarRifle gui = new GUIListarRifle(servicioArma);
         gui.setVisible(true);
-    }//GEN-LAST:event_miEliminarActionPerformed
+    }//GEN-LAST:event_miListarRifleActionPerformed
 
-    private void miConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miConsultarActionPerformed
-        GUIConsultarArma gui = new GUIConsultarArma(servicioArma);
+    private void miListarLanzadoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miListarLanzadoresActionPerformed
+        GUIListarLanzador gui = new GUIListarLanzador(servicioArma);
         gui.setVisible(true);
-    }//GEN-LAST:event_miConsultarActionPerformed
+    }//GEN-LAST:event_miListarLanzadoresActionPerformed
+
+    private void miEliminarRifleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miEliminarRifleActionPerformed
+        GUIEliminarRifle gui = new GUIEliminarRifle(servicioArma);
+        gui.setVisible(true);
+        
+    }//GEN-LAST:event_miEliminarRifleActionPerformed
+
+    private void miEliminarLanzadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miEliminarLanzadorActionPerformed
+        GUIEliminarLanzador gui = new GUIEliminarLanzador(servicioArma);
+        gui.setVisible(true);
+    }//GEN-LAST:event_miEliminarLanzadorActionPerformed
+
+    private void miEliminarProyectilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miEliminarProyectilActionPerformed
+        GUIEliminarProyectil gui = new GUIEliminarProyectil(servicioProyectiles, servicioArma);
+        gui.setVisible(true);
+    }//GEN-LAST:event_miEliminarProyectilActionPerformed
+
+    private void miActualizarRifleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miActualizarRifleActionPerformed
+        GUIActualizarRifle gui = new GUIActualizarRifle(servicioArma);
+        gui.setVisible(true);
+    }//GEN-LAST:event_miActualizarRifleActionPerformed
+
+    private void miActualizarLanzadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miActualizarLanzadorActionPerformed
+        GUIActualizarLanzador gui = new GUIActualizarLanzador(servicioArma, servicioProyectiles);
+        gui.setVisible(true);
+    }//GEN-LAST:event_miActualizarLanzadorActionPerformed
+
+    private void miConsultarRifleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miConsultarRifleActionPerformed
+        GUIConsultarRifle gui = new GUIConsultarRifle(servicioArma);
+        gui.setVisible(true);
+    }//GEN-LAST:event_miConsultarRifleActionPerformed
+
+    private void miConsultarLanzadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miConsultarLanzadorActionPerformed
+        GUIConsultarLanzador gui = new GUIConsultarLanzador(servicioArma);
+        gui.setVisible(true);
+    }//GEN-LAST:event_miConsultarLanzadorActionPerformed
 
     /**
      * @param args the command line arguments
@@ -348,10 +433,16 @@ public class GUIPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JMenu jmArma;
     private javax.swing.JMenuItem miAcerca;
-    private javax.swing.JMenuItem miConsultar;
+    private javax.swing.JMenuItem miActualizarLanzador;
+    private javax.swing.JMenuItem miActualizarRifle;
+    private javax.swing.JMenuItem miConsultarLanzador;
+    private javax.swing.JMenuItem miConsultarRifle;
     private javax.swing.JMenuItem miCrearArma;
-    private javax.swing.JMenuItem miEliminar;
-    private javax.swing.JMenuItem miListarArma;
+    private javax.swing.JMenuItem miEliminarLanzador;
+    private javax.swing.JMenuItem miEliminarProyectil;
+    private javax.swing.JMenuItem miEliminarRifle;
+    private javax.swing.JMenuItem miListarLanzadores;
+    private javax.swing.JMenuItem miListarRifle;
     // End of variables declaration//GEN-END:variables
 
 }
