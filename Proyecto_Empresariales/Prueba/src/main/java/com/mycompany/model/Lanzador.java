@@ -15,6 +15,7 @@ public class Lanzador extends Arma {
     private int tiempoRecarga; // el tiempo de recarga es obsoleto
     private Proyectil proyectil;
     private boolean recargaCompletada;
+    
 
     public Lanzador(int daño, int municion, String nombre, int tiempoRecarga, int vida, Proyectil proyectil) {
         super(daño, municion, nombre, vida);
@@ -53,8 +54,10 @@ public class Lanzador extends Arma {
         System.out.println(temp);
         try {
             System.out.println("Recargando...");
+            
             Thread.sleep(tiempoRecarga);
             recargaCompletada = true;
+            
             notify();
         } catch (InterruptedException ex) {
             ex.printStackTrace();
