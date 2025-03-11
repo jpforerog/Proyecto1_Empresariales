@@ -5,6 +5,7 @@
 package com.mycompany.view;
 
 import com.mycompany.model.Arma;
+import com.mycompany.model.IObserver;
 import com.mycompany.model.Lanzador;
 import com.mycompany.model.Proyectil;
 import com.mycompany.servicio.ServicioArma;
@@ -19,7 +20,7 @@ import javax.swing.ListModel;
  *
  * @author Juan David
  */
-public class GUICrearLanzador extends javax.swing.JFrame {
+public class GUICrearLanzador extends javax.swing.JFrame implements IObserver{
 
     ServicioArma servicioArma;
     ServicioProyectiles servicioProyectiles;
@@ -283,4 +284,9 @@ public class GUICrearLanzador extends javax.swing.JFrame {
     private javax.swing.JSpinner spVida;
     private javax.swing.JTextField tfNombre;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void cambio() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

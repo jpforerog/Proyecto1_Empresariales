@@ -43,7 +43,7 @@ public class GUIConsultarLanzador extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Eliminar Arma");
 
-        lblConsultar.setText("Consultar (Ingrese el nombre del arma)");
+        lblConsultar.setText("Consultar (Ingrese el nombre del lanzador)");
 
         btnBuscar.setText("Buscar");
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -93,7 +93,7 @@ public class GUIConsultarLanzador extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblConsultar)
                             .addComponent(btnBuscar))
-                        .addGap(0, 653, Short.MAX_VALUE))
+                        .addGap(0, 634, Short.MAX_VALUE))
                     .addComponent(jScrollPane1))
                 .addContainerGap())
         );

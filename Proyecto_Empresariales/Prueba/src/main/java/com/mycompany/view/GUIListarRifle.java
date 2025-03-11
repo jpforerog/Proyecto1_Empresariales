@@ -5,17 +5,19 @@
 package com.mycompany.view;
 
 import com.mycompany.model.Arma;
+import com.mycompany.model.IObserver;
 import com.mycompany.model.Rifle;
 import com.mycompany.servicio.ServicioArma;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Juan David
  */
-public class GUIListarRifle extends javax.swing.JFrame {
+public class GUIListarRifle extends javax.swing.JFrame implements IObserver {
 
     private ServicioArma servicioArma;
 
@@ -26,6 +28,7 @@ public class GUIListarRifle extends javax.swing.JFrame {
         this.servicioArma = servicioArma;
         initComponents();
         setLocationRelativeTo(this);
+        servicioArma.registrarGUI(this);
     }
 
     /**
@@ -44,6 +47,11 @@ public class GUIListarRifle extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Listar Rifle");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         lblTitulo.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
         lblTitulo.setText("RIFLES");
@@ -119,26 +127,14 @@ public class GUIListarRifle extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarActionPerformed
-        List<Arma> listaArmas = servicioArma.getArmas();
-        if (listaArmas.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "No hay armas para listar", "Información", JOptionPane.INFORMATION_MESSAGE);
-            return;
-        }
-        List<Rifle> listaRifles = listaArmas.stream()
-                .filter(Rifle.class::isInstance) // Filtra solo las instancias de Rifle
-                .map(Rifle.class::cast) // Catea los elementos a Rifle
-                .collect(Collectors.toList()); // Recolecta los resultados en una lista
-        int fila = 0;
-        for (Rifle a : listaRifles) {
-            tbListar.setValueAt(a.getNombre(), fila, 0);
-            tbListar.setValueAt(a.getDaño(), fila, 1);
-            tbListar.setValueAt(a.getMunicion(), fila, 2);
-            tbListar.setValueAt(a.getVida(), fila, 3);
-            tbListar.setValueAt(a.getCadenciaDisparo(), fila, 4);
-            tbListar.setValueAt(a.getVelocidad(), fila, 5);
-            fila++;
-        }
+        cambio();
+
     }//GEN-LAST:event_btnListarActionPerformed
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        // TODO add your handling code here:
+        servicioArma.desRegistrarGUI(this);
+    }//GEN-LAST:event_formWindowClosed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -147,4 +143,55 @@ public class GUIListarRifle extends javax.swing.JFrame {
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JTable tbListar;
     // End of variables declaration//GEN-END:variables
+
+    
+    @Override
+    public void cambio() {
+        DefaultTableModel dtm = (DefaultTableModel) tbListar.getModel();
+        dtm.setRowCount(0);
+        for (int i = 0; i < 11; i++) {
+            dtm.addRow(new Object[dtm.getColumnCount()]); // Añade fila con valores null
+        }
+        System.out.println("imprimendo lista de armas");
+        for(Arma a:servicioArma.getArmas()){
+            System.out.println(a.toString());
+        }
+        List<Arma> listaArmas = servicioArma.getArmas();
+        if (listaArmas.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "No hay armas para listar", "Información", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+       
+        
+        
+        List<Rifle> listaRifles = listaArmas.stream()
+                .filter(Rifle.class::isInstance) // Filtra solo las instancias de Rifle
+                .map(Rifle.class::cast) // Catea los elementos a Rifle
+                .collect(Collectors.toList()); // Recolecta los resultados en una lista
+        if (listaRifles.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "No hay armas para listar", "Información", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        int fila = 0;
+        for (Rifle a : listaRifles) {
+            if (fila < dtm.getRowCount()) {
+                tbListar.setValueAt(a.getNombre(), fila, 0);
+                tbListar.setValueAt(a.getDaño(), fila, 1);
+                tbListar.setValueAt(a.getMunicion(), fila, 2);
+                tbListar.setValueAt(a.getVida(), fila, 3);
+                tbListar.setValueAt(a.getCadenciaDisparo(), fila, 4);
+                tbListar.setValueAt(a.getVelocidad(), fila, 5);
+            } else {
+                dtm.addRow(new Object[dtm.getColumnCount()]);
+                tbListar.setValueAt(a.getNombre(), fila, 0);
+                tbListar.setValueAt(a.getDaño(), fila, 1);
+                tbListar.setValueAt(a.getMunicion(), fila, 2);
+                tbListar.setValueAt(a.getVida(), fila, 3);
+                tbListar.setValueAt(a.getCadenciaDisparo(), fila, 4);
+                tbListar.setValueAt(a.getVelocidad(), fila, 5);
+            }
+        
+        fila++;
+    }
+}
 }

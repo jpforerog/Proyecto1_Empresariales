@@ -4,6 +4,7 @@
  */
 package com.mycompany.view;
 
+import com.mycompany.model.IObserver;
 import com.mycompany.model.Proyectil;
 import com.mycompany.servicio.ServicioProyectiles;
 import java.util.List;
@@ -12,7 +13,7 @@ import java.util.List;
  *
  * @author jupaf
  */
-public class GUIListarProyectiles extends javax.swing.JFrame {
+public class GUIListarProyectiles extends javax.swing.JFrame implements IObserver {
     ServicioProyectiles servicioProyectiles;
     /**
      * Creates new form GUIListarProyectiles
@@ -120,4 +121,9 @@ public class GUIListarProyectiles extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblListarProyectiles;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void cambio() {
+        
+    }
 }

@@ -42,7 +42,7 @@ public class GUIConsultarRifle extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Consultar Arma");
 
-        lblConsultar.setText("Consultar (Ingrese el nombre del arma)");
+        lblConsultar.setText("Consultar (Ingrese el nombre del rifle)");
 
         btnBuscar.setText("Buscar");
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {

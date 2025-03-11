@@ -15,6 +15,8 @@ public class Rifle extends Arma implements IRifle {
     private int cadenciaDisparo;
     private float velocidad;
     private boolean recargaCompletada;
+    
+    
 
     public Rifle(int daño, int municion, String nombre, int vida, int cadenciaDisparo, float velocidad) {
         super(daño, municion, nombre, vida);
@@ -87,6 +89,7 @@ public class Rifle extends Arma implements IRifle {
             
             Thread.sleep(tiempoRecarga);
             recargaCompletada = true;
+            
             notify();
         } catch (InterruptedException ex) {
             ex.printStackTrace();

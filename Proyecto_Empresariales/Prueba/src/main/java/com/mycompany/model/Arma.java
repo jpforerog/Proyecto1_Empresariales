@@ -4,6 +4,8 @@
  */
 package com.mycompany.model;
 
+import com.mycompany.view.GUIJuego;
+
 import java.lang.reflect.Field;
 import java.time.LocalDate;
 
@@ -12,18 +14,32 @@ import java.time.LocalDate;
  * @author Unibague
  */
 public class Arma implements Cloneable {
-
+    
     private int daño;
     private int municion;
     private String nombre;
     private LocalDate fechaCreacion;
+    
+    private boolean recargaCompletada;
+
+    public boolean isRecargaCompletada() {
+        return recargaCompletada;
+    }
+
+    public void setRecargaCompletada(boolean recargaCompletada) {
+        this.recargaCompletada = recargaCompletada;
+    }
+    
+    
 
     //Nuevos atributos
     private int capMunicion;
     private int vida = 100;
     private final int distancia = 100;
+    
 
     public Arma(int daño, int municion, String nombre, int vida) {
+        
         this.daño = daño;
         this.municion = municion;
         this.capMunicion = municion;
@@ -31,6 +47,7 @@ public class Arma implements Cloneable {
         this.fechaCreacion = LocalDate.now();
         this.vida = vida;
     }
+    
 
     @Override
     public Arma clone() {
@@ -88,6 +105,7 @@ public class Arma implements Cloneable {
     public void setCapMunicion(int capMunicion) {
         this.capMunicion = capMunicion;
     }
+  
     
     public static String[] obtenerNombresAtributos(Object objeto) {
         // Obtener la clase del objeto
@@ -143,6 +161,7 @@ public class Arma implements Cloneable {
         }
         return objetivoConVida;
     }
+    
 
     public void recargar() {
         System.out.println("recarga de arma");
@@ -157,5 +176,7 @@ public class Arma implements Cloneable {
         System.out.println("Recarga completada. Munición: " + municion);
 
     }
+
+    
 
 }

@@ -5,6 +5,7 @@
 package com.mycompany.view;
 
 import com.mycompany.model.Arma;
+import com.mycompany.model.IObserver;
 import com.mycompany.model.Lanzador;
 import com.mycompany.model.Rifle;
 import com.mycompany.servicio.ServicioArma;
@@ -15,7 +16,7 @@ import javax.swing.JOptionPane;
  *
  * @author Juan David
  */
-public class GUIEliminarLanzador extends javax.swing.JFrame {
+public class GUIEliminarLanzador extends javax.swing.JFrame implements IObserver{
 
     private ServicioArma servicioArma;
     private Lanzador lanzadorEliminar;
@@ -207,4 +208,9 @@ public class GUIEliminarLanzador extends javax.swing.JFrame {
     private javax.swing.JTable tbListar;
     private javax.swing.JTextField tfConsultar;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void cambio() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

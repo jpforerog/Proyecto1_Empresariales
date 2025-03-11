@@ -5,17 +5,19 @@
 package com.mycompany.view;
 
 import com.mycompany.model.Arma;
+import com.mycompany.model.IObserver;
 import com.mycompany.model.Lanzador;
 import com.mycompany.servicio.ServicioArma;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Juan David
  */
-public class GUIListarLanzador extends javax.swing.JFrame {
+public class GUIListarLanzador extends javax.swing.JFrame implements IObserver {
 
     private ServicioArma servicioArma;
 
@@ -26,6 +28,7 @@ public class GUIListarLanzador extends javax.swing.JFrame {
         this.servicioArma = servicioArma;
         initComponents();
         setLocationRelativeTo(this);
+        servicioArma.registrarGUI(this);
     }
 
     /**
@@ -44,6 +47,11 @@ public class GUIListarLanzador extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Listar Lanzador");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         lblTitulo.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
         lblTitulo.setText("LANZADORES");
@@ -126,6 +134,30 @@ public class GUIListarLanzador extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarActionPerformed
+        cambio();
+    }//GEN-LAST:event_btnListarActionPerformed
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        // TODO add your handling code here:
+        servicioArma.desRegistrarGUI(this);
+    }//GEN-LAST:event_formWindowClosed
+
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnListar;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblTitulo;
+    private javax.swing.JTable tbListar;
+    // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void cambio() {
+        DefaultTableModel dtm = (DefaultTableModel) tbListar.getModel();
+        dtm.setRowCount(0);
+        for (int i = 0; i < 11; i++) {
+            dtm.addRow(new Object[dtm.getColumnCount()]); // Añade fila con valores null
+        }
+
         List<Arma> listaArmas = servicioArma.getArmas();
         if (listaArmas.isEmpty()) {
             JOptionPane.showMessageDialog(null, "No hay armas para listar", "Información", JOptionPane.INFORMATION_MESSAGE);
@@ -137,29 +169,39 @@ public class GUIListarLanzador extends javax.swing.JFrame {
                 .filter(Lanzador.class::isInstance)
                 .map(Lanzador.class::cast)
                 .collect(Collectors.toList());
-        
+        if (listaLanzadores.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "No hay lanzadores para listar", "Información", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+
         System.out.println("Lista de lanzadores filtrada: " + listaLanzadores.toString());
-        
+
         int fila = 0;
         for (Lanzador a : listaLanzadores) {
-            tbListar.setValueAt(a.getNombre(), fila, 0);
-            tbListar.setValueAt(a.getDaño(), fila, 1);
-            tbListar.setValueAt(a.getMunicion(), fila, 2);
-            tbListar.setValueAt(a.getVida(), fila, 3);
-            tbListar.setValueAt(a.getTiempoRecarga(), fila, 4);
-            String proyectil = "<html>Tipo: " + a.getProyectil().getTipo() 
-                + "<br>Velocidad: " + a.getProyectil().getVelocidad()
-                + "<br>Radio de explosión: " + a.getProyectil().getRadoExplosion() + "</html>";
-            tbListar.setValueAt(proyectil, fila, 5);
+            if (fila < dtm.getRowCount()) {
+                tbListar.setValueAt(a.getNombre(), fila, 0);
+                tbListar.setValueAt(a.getDaño(), fila, 1);
+                tbListar.setValueAt(a.getMunicion(), fila, 2);
+                tbListar.setValueAt(a.getVida(), fila, 3);
+                tbListar.setValueAt(a.getTiempoRecarga(), fila, 4);
+                String proyectil = "<html>Tipo: " + a.getProyectil().getTipo()
+                        + "<br>Velocidad: " + a.getProyectil().getVelocidad()
+                        + "<br>Radio de explosión: " + a.getProyectil().getRadoExplosion() + "</html>";
+                tbListar.setValueAt(proyectil, fila, 5);
+            } else {
+                dtm.addRow(new Object[dtm.getColumnCount()]);
+                tbListar.setValueAt(a.getNombre(), fila, 0);
+                tbListar.setValueAt(a.getDaño(), fila, 1);
+                tbListar.setValueAt(a.getMunicion(), fila, 2);
+                tbListar.setValueAt(a.getVida(), fila, 3);
+                tbListar.setValueAt(a.getTiempoRecarga(), fila, 4);
+                String proyectil = "<html>Tipo: " + a.getProyectil().getTipo()
+                        + "<br>Velocidad: " + a.getProyectil().getVelocidad()
+                        + "<br>Radio de explosión: " + a.getProyectil().getRadoExplosion() + "</html>";
+                tbListar.setValueAt(proyectil, fila, 5);
+            }
+
             fila++;
         }
-    }//GEN-LAST:event_btnListarActionPerformed
-
-    
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnListar;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblTitulo;
-    private javax.swing.JTable tbListar;
-    // End of variables declaration//GEN-END:variables
+    }
 }

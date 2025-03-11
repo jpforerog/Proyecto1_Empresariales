@@ -5,6 +5,7 @@
 package com.mycompany.view;
 
 import com.mycompany.model.Arma;
+import com.mycompany.model.IObserver;
 import com.mycompany.model.Rifle;
 import com.mycompany.servicio.ServicioArma;
 import java.util.List;
@@ -14,7 +15,7 @@ import javax.swing.JOptionPane;
  *
  * @author Juan David
  */
-public class GUIEliminarRifle extends javax.swing.JFrame {
+public class GUIEliminarRifle extends javax.swing.JFrame implements IObserver{
 
     private ServicioArma servicioArma;
     private Rifle rifleEliminar;
@@ -24,6 +25,7 @@ public class GUIEliminarRifle extends javax.swing.JFrame {
         this.rifleEliminar = null;
         initComponents();
         setLocationRelativeTo(this);
+        servicioArma.registrarGUI(this);
     }
 
     /**
@@ -194,4 +196,9 @@ public class GUIEliminarRifle extends javax.swing.JFrame {
     private javax.swing.JTable tbListar;
     private javax.swing.JTextField tfConsultar;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void cambio() {
+        
+    }
 }

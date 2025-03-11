@@ -5,6 +5,7 @@
 package com.mycompany.view;
 
 import com.mycompany.model.Arma;
+import com.mycompany.model.IObserver;
 import com.mycompany.model.Rifle;
 import com.mycompany.servicio.ServicioArma;
 import java.time.LocalDate;
@@ -16,7 +17,7 @@ import javax.swing.JSpinner;
  *
  * @author Juan David
  */
-public class GUICrearRifle extends javax.swing.JFrame {
+public class GUICrearRifle extends javax.swing.JFrame implements IObserver{
 
     ServicioArma servicioArma;
 
@@ -200,8 +201,9 @@ public class GUICrearRifle extends javax.swing.JFrame {
 
         Arma rifle = new Rifle(daño, municion, nombre, vida, cadencia, velocidad);
         System.out.println(rifle.toString());
-
+        
         servicioArma.añadirArma(rifle);
+        
         JOptionPane.showMessageDialog(this, "Exito al crear el rifle", "Exito", JOptionPane.INFORMATION_MESSAGE);
         resetearForm();
     }//GEN-LAST:event_btCrearRifleActionPerformed
@@ -231,4 +233,9 @@ public class GUICrearRifle extends javax.swing.JFrame {
     private javax.swing.JSpinner spVida;
     private javax.swing.JTextField tfNombre;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void cambio() {
+        
+    }
 }

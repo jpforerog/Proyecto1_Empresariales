@@ -5,6 +5,7 @@
 package com.mycompany.view;
 
 import com.mycompany.model.Arma;
+import com.mycompany.model.Empresa;
 import com.mycompany.model.Proyectil;
 import com.mycompany.servicio.ServicioArma;
 import com.mycompany.servicio.ServicioProyectiles;
@@ -31,12 +32,15 @@ public class GUIPrincipal extends javax.swing.JFrame {
      */
     private ServicioProyectiles servicioProyectiles = new ServicioProyectiles();
     private ServicioArma servicioArma = new ServicioArma();
+    private Empresa empresa = Empresa.getInstance();;
 
     public GUIPrincipal() {
         // Eliminar bordes y barra de título
 
         FondoPanel panel = new FondoPanel("src\\main\\java\\imagenes\\Fondogame.jpg");
         initComponents();
+        
+        
         
         btnIniciar.setPreferredSize(new Dimension(180, 50));
         
@@ -117,6 +121,8 @@ public class GUIPrincipal extends javax.swing.JFrame {
         miConsultarLanzador = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         miAcerca = new javax.swing.JMenuItem();
+        jMenu6 = new javax.swing.JMenu();
+        AcercaEmpresa = new javax.swing.JMenuItem();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -271,6 +277,18 @@ public class GUIPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu5);
 
+        jMenu6.setText("Empresa");
+
+        AcercaEmpresa.setText("Informacion de la empresa");
+        AcercaEmpresa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AcercaEmpresaActionPerformed(evt);
+            }
+        });
+        jMenu6.add(AcercaEmpresa);
+
+        jMenuBar1.add(jMenu6);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -382,6 +400,17 @@ public class GUIPrincipal extends javax.swing.JFrame {
         gui.setVisible(true);
     }//GEN-LAST:event_miConsultarLanzadorActionPerformed
 
+    private void AcercaEmpresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AcercaEmpresaActionPerformed
+        // TODO add your handling code here:
+        String text = (empresa.getNit()+"");
+        JOptionPane.showMessageDialog(
+                    this,
+                    text,
+                    "Information",
+                    JOptionPane.INFORMATION_MESSAGE
+            );
+    }//GEN-LAST:event_AcercaEmpresaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -418,6 +447,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem AcercaEmpresa;
     private javax.swing.JMenuItem JMenuItemCProyectiles;
     private javax.swing.JMenuItem JMenuSalir;
     private javax.swing.JButton btnIniciar;
@@ -426,6 +456,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem jMenuItem1;
