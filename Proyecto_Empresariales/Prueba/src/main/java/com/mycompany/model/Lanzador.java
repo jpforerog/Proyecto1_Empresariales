@@ -47,10 +47,11 @@ public class Lanzador extends Arma {
 
     @Override
     public synchronized void recargar() {
-        
-        
-        int tiempoRecarga = 3000;
+       
+        int tiempoRecarga = 5000;
         int temp = (int) (Math.round(getDaño() * 0.2) * 100); //El tiempo de recarga depende del daño, puesto que asi se penaliza las armas con demasiado daño
+        
+        
         if (temp > tiempoRecarga) {
             tiempoRecarga = temp;
         }
