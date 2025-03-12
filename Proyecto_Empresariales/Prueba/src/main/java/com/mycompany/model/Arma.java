@@ -19,6 +19,15 @@ public class Arma implements Cloneable {
     private int municion;
     private String nombre;
     private LocalDate fechaCreacion;
+    private boolean recargando = false;
+
+    public boolean isRecargando() {
+        return recargando;
+    }
+
+    public void setRecargando(boolean recargando) {
+        this.recargando = recargando;
+    }
     
     private boolean recargaCompletada;
 
@@ -154,9 +163,7 @@ public class Arma implements Cloneable {
             if (enemigoVivo(objetivoConVida)) {
                 municion -= 1;
                 objetivoConVida.setVida(objetivoConVida.getVida() - this.getDaño());
-                if (municion == 0) {
-                    recargar();
-                }
+                
             }
         }
         return objetivoConVida;

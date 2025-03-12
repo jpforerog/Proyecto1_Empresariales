@@ -88,9 +88,7 @@ public class Rifle extends Arma implements IRifle {
             System.out.println("Recargando...");
             
             Thread.sleep(tiempoRecarga);
-            recargaCompletada = true;
             
-            notify();
         } catch (InterruptedException ex) {
             ex.printStackTrace();
             System.out.println("Fue interrumpida la recarga.");
@@ -100,16 +98,7 @@ public class Rifle extends Arma implements IRifle {
         System.out.println("_______________________");
     }
     
-        public synchronized void esperarRecarga() {
-        while (!recargaCompletada) {
-            try {
-                wait(); // Espera hasta que se notifique la recarga
-            } catch (InterruptedException ex) {
-                System.out.println("Espera interrumpida.");
-            }
-        }
-        System.out.println("Recarga completada.");
-    }
+    
 
 
 }

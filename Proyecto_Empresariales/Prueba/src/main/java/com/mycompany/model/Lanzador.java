@@ -15,6 +15,7 @@ public class Lanzador extends Arma {
     private int tiempoRecarga; // el tiempo de recarga es obsoleto
     private Proyectil proyectil;
     private boolean recargaCompletada;
+    private boolean recargando = false;
     
 
     public Lanzador(int daño, int municion, String nombre, int tiempoRecarga, int vida, Proyectil proyectil) {
@@ -46,6 +47,8 @@ public class Lanzador extends Arma {
 
     @Override
     public synchronized void recargar() {
+        
+        
         int tiempoRecarga = 3000;
         int temp = (int) (Math.round(getDaño() * 0.2) * 100); //El tiempo de recarga depende del daño, puesto que asi se penaliza las armas con demasiado daño
         if (temp > tiempoRecarga) {
@@ -56,29 +59,19 @@ public class Lanzador extends Arma {
             System.out.println("Recargando...");
             
             Thread.sleep(tiempoRecarga);
-            recargaCompletada = true;
             
-            notify();
         } catch (InterruptedException ex) {
             ex.printStackTrace();
             System.out.println("Fue interrumpida la recarga.");
         }
         setMunicion(getCapMunicion());
         System.out.println("Recarga completada. Munición: " + getMunicion());
+        
+        System.out.println(recargando);
 
     }
 
-    public synchronized void esperarRecarga() {
-        while (!recargaCompletada) {
-            try {
-                wait(); // Espera hasta que se notifique la recarga
-            } catch (InterruptedException ex) {
-                System.out.println("Espera interrumpida.");
-            }
-        }
-        System.out.println("Recarga completada.");
-    }
-
+   
     
     public String toStringCompleto() {
         return "Lanzador{" + "da\u00f1o=" + getDaño() + ", municion=" + getMunicion() + ", nombre=" 

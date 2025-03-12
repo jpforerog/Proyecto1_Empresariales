@@ -9,6 +9,8 @@ import com.mycompany.model.IObserver;
 import com.mycompany.model.Rifle;
 import com.mycompany.servicio.ServicioArma;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -260,9 +262,9 @@ public class GUIActualizarRifle extends javax.swing.JFrame implements IObserver{
 
         List<Arma> listaArmas = servicioArma.getArmas();
         String nombre = tfNombre.getText().trim();
-
+        
         for (Arma a : listaArmas) {
-            if (a.getNombre().equals(nombre) && a.getClass().getSimpleName().equals("Rifle")) {
+            if (a.getNombre().equals(nombre) && a.getClass().getSimpleName().equals("Rifle") && !rifleActualizar.equals(a)) {
                 JOptionPane.showMessageDialog(this, "Ya existe un rifle con este nombre.", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
@@ -282,10 +284,15 @@ public class GUIActualizarRifle extends javax.swing.JFrame implements IObserver{
                 JOptionPane.QUESTION_MESSAGE);
 
         if (respuesta == JOptionPane.YES_OPTION) {
-            servicioArma.eliminarArma(rifleActualizar);
             Arma rifleActualizado = new Rifle(daño, municion, nombre, vida, cadencia, velocidad);
             System.out.println(rifleActualizado.toString());
-            servicioArma.añadirArma(rifleActualizado);
+            try {
+                servicioArma.actualizarArma(rifleActualizar,rifleActualizado);
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, ex.getMessage());
+                
+                
+            }
         } else {
             return;
         }
