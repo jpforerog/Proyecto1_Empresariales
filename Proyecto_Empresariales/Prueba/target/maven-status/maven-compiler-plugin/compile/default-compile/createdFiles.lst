@@ -10,6 +10,8 @@ com\mycompany\view\GUICrearRifle$1.class
 com\mycompany\view\GUIJuego$1.class
 com\mycompany\view\GUIEliminarProyectil$1.class
 com\mycompany\view\GUIPrincipal$1.class
+com\mycompany\model\Empresa.class
+com\mycompany\view\GUIJuego$5.class
 com\mycompany\view\GUIEliminarLanzador.class
 com\mycompany\view\GUIListarLanzador$2.class
 com\mycompany\view\GUIPrincipal$11.class
@@ -22,6 +24,7 @@ com\mycompany\view\GUIListarProyectiles$1.class
 com\mycompany\view\GUICrearProyectil$1.class
 com\mycompany\view\GUIActualizarRifle$3.class
 com\mycompany\view\GUICrearRifle.class
+com\mycompany\model\IObserver.class
 com\mycompany\view\GUIConsultarLanzador.class
 com\mycompany\view\GUIPrincipal$2.class
 com\mycompany\view\GUIListarProyectiles.class
@@ -41,7 +44,9 @@ com\mycompany\view\GUIListarRifle$1.class
 com\mycompany\servicio\ServicioArma.class
 com\mycompany\view\GUIPrincipal$15.class
 com\mycompany\view\GUICrearLanzador.class
+com\mycompany\view\GUIJuego$3.class
 com\mycompany\view\GUIConsultarRifle$2.class
+com\mycompany\view\GUIListarRifle$3.class
 com\mycompany\view\GUIElegirArmaJugador2.class
 com\mycompany\servicio\ServicioProyectiles.class
 com\mycompany\view\FondoPanel.class
@@ -64,12 +69,15 @@ com\mycompany\view\GUICrearArma$1.class
 com\mycompany\view\GUIListarRifle$2.class
 com\mycompany\view\GUIActualizarLanzador$2.class
 com\mycompany\view\GUICrearArma.class
+com\mycompany\view\GUIListarLanzador$3.class
 com\mycompany\view\GUIPrincipal$13.class
 com\mycompany\view\GUIConsultarRifle$1.class
+com\mycompany\view\GUIJuego$4.class
 com\mycompany\view\GUIPrincipal$9.class
 com\mycompany\view\GUIActualizarLanzador$5.class
 com\mycompany\view\GUIEliminarLanzador$2.class
 com\mycompany\model\Rifle.class
+com\mycompany\view\GUIPrincipal$17.class
 com\mycompany\view\GUIConsultarLanzador$2.class
 com\mycompany\view\GUIPrincipal.class
 com\mycompany\view\GUIListarLanzador.class

@@ -329,7 +329,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItemListarProyectilesActionPerformed
 
     private void miAcercaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miAcercaActionPerformed
-        JOptionPane.showMessageDialog(this, "Autores: Juan Alvarez, Sebastian Acosta, Juan Forero \n version 0.0", "Acerca de nosotros", JOptionPane.QUESTION_MESSAGE);
+        JOptionPane.showMessageDialog(this, "Autores: Juan Alvarez, Sebastian Acosta, Juan Forero \n version 0.2 ( Beta )", "Acerca de nosotros", JOptionPane.QUESTION_MESSAGE);
     }//GEN-LAST:event_miAcercaActionPerformed
 
     private void miCrearArmaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miCrearArmaActionPerformed
@@ -402,7 +402,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
 
     private void AcercaEmpresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AcercaEmpresaActionPerformed
         // TODO add your handling code here:
-        String text = (empresa.getNit()+"");
+        String text = (empresa.getNit()+" Empresa Singleton");
         JOptionPane.showMessageDialog(
                     this,
                     text,
