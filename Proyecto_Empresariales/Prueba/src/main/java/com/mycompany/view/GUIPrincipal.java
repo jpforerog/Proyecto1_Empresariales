@@ -402,7 +402,7 @@ public class GUIPrincipal extends javax.swing.JFrame {
 
     private void AcercaEmpresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AcercaEmpresaActionPerformed
         // TODO add your handling code here:
-        String text = (empresa.getNit()+" Empresa Singleton");
+        String text = empresa.toString();
         JOptionPane.showMessageDialog(
                     this,
                     text,

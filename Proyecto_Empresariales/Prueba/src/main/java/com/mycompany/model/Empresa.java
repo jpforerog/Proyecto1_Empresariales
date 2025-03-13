@@ -9,6 +9,7 @@ package com.mycompany.model;
  * @author jupaf
  */
 public class Empresa {
+    private String nombre;
     private int nit;
     private static Empresa empresa;
     private Empresa(){
@@ -17,6 +18,7 @@ public class Empresa {
     public static Empresa getInstance(){
         if(empresa == null){
             empresa = new Empresa();
+            empresa.nombre = "Ubisoft";
             empresa.nit = 2000000;
         }
         return empresa;
@@ -28,6 +30,10 @@ public class Empresa {
 
     public void setNit(int nit) {
         this.nit = nit;
+    }
+    @Override
+    public String toString(){
+        return nombre+"\n"+"NIT: "+nit;
     }
     
 }

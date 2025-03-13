@@ -46,21 +46,20 @@ public class ServicioArma {
         }
     }
 
-    public void actualizarArma(Arma armaAct, Arma nueva) throws Exception {
-        if (armaAct == null) {
-            throw new Exception("Vuelve a buscar y seleccionar el arma que quieres actualizar");
-        } else {
-
-            for (Arma ar : armas) {
-                System.out.println(armaAct.equals(ar));
-                if (armaAct.equals(ar)) {
-                    System.out.println("Entraaa");
-                    System.out.println(nueva);
-                    armas.remove(ar);
-                    armas.add(nueva);
-                }
+    public void actualizarArma(Arma armaAct, Arma nueva) {
+        
+        for (Arma ar : armas) {
+            System.out.println(armaAct.equals(ar));
+            if (armaAct.equals(ar)) {
+                System.out.println("Entraaa");
+                System.out.println(nueva);
+                armas.remove(ar);
+                armas.add(nueva);
+                cambio();
+                return;
             }
         }
+
         cambio();
     }
 
